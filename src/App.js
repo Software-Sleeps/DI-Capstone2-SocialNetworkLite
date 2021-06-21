@@ -2,13 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, { Component } from 'react';
-import CreateUser from './components/CreateUser/CreateUser';
+import Login from './components/Login/Login';
 
 class App extends Component {
   render() {
     return (
       <div>
-      <CreateUser/>
+      <Login/>
       </div>
     );
   }
