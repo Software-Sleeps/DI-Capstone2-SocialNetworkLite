@@ -75,7 +75,7 @@ class Login extends Component {
             //making sure that token was stored
             console.log(sessionStorage.getItem('token'))
 
-            this.props.history.push('/')
+            this.props.history.push('/dashboard')
 
         }
         })
