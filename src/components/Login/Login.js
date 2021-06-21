@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import CreateUser from '../CreateUser/CreateUser';
 import { useHistory, Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
 
+import './Login.css'
+import { withRouter } from 'react-router'
+import {Form, Button} from 'react-bootstrap'
 
 class Login extends Component {
     constructor(props){
@@ -85,30 +87,62 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleLogin}>
-                    <label htmlFor="username">
-                        Username
+            <div className="text-center">
 
-                        <input
+                        <div className="pt-5">
+                    <h2>Login</h2>
+                    <p>Sign in to continue</p>
+                        </div>
+                <form onSubmit={this.handleLogin} className="p-5">
+
+                <Form.Group controlId="formBasicEmail" className="p-inline pb-3">
+
+                    {/* <label htmlFor="username">
+                        Username
+                        </label> */}
+
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text"
+                        onChange={this.handleUsernameChange}
+                        name={this.state.username}
+                        value={this.state.username} 
+                        placeholder="Enter email" 
+                        minLength="3" maxLength="20"
+                        required/>
+
+                        {/* <input
                         type="text"
                         onChange={this.handleUsernameChange}
                         name={this.state.username}
                         value={this.state.username}
-                        />
-                    </label>
+                        /> */}
+                    </Form.Group>
 
-                    <label htmlFor="password">
+
+                    {/* <label htmlFor="password">
                         Password
-                        <input
-                        type="password"
-                        onChange={this.handlePasswordChange}
-                        name={this.state.password}
-                        value={this.state.password}
-                        />
-                    </label>
+                    </label> */}
+            
+            <Form.Group controlId="formBasicPassword"  className="p-inline pb-3">
 
-                <input type="submit" value="submit"/>
+            <Form.Label className="text-align-start">Password</Form.Label>
+
+            <Form.Control 
+                type="password" 
+                placeholder="Enter Password" 
+                onChange={this.handlePasswordChange}
+                name={this.state.password}
+                value={this.state.password} 
+                minLength="3" maxLength="20"
+                required
+                />
+
+                </Form.Group>    
+
+                <Button variant="dark" type="submit" value="Submit" className="pr-5 pl-5"> 
+                    Log in
+                </Button>
+
                 </form>
 
 

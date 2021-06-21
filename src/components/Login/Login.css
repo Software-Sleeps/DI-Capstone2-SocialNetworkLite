@@ -1,0 +1,17 @@
+.p-inline{
+    padding-inline: 30%;
+}
+
+.text-align-start{
+    text-align: start;
+}
+.form-control:not(active), .form-control:active{
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    color: black
+}
+
+.form-label{
+    text-align: start;
+}

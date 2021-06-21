@@ -9,6 +9,7 @@ class CreateUser extends Component {
             createUN: '',
             displayName: '',
             createPW: '',
+            showModal: false,
 
             //temporarily as state but will turn URL to props
             URL: 'https://socialnetworklite.herokuapp.com'
@@ -68,6 +69,8 @@ class CreateUser extends Component {
     }
 
     render() {
+
+       
         return (
             <div>
 
