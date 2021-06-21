@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import CreateUser from '../CreateUser/CreateUser';
+import { useHistory, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+
 
 class Login extends Component {
     constructor(props){
@@ -51,9 +54,19 @@ class Login extends Component {
         .then(data =>{
             console.log("ALL login data", data)
 
-            //changing token state value to token in data
+            if(data.statusCode > 399){
+
+                //display error message
+
+            } else {
+
             this.setState({
-                token: data.token
+                //changing token state value to token in data
+                token: data.token,
+
+                //resets username and password inputs
+                username: "",
+                password: ""
             })
 
             //stores token to access throughout account
@@ -61,7 +74,12 @@ class Login extends Component {
 
             //making sure that token was stored
             console.log(sessionStorage.getItem('token'))
+
+            this.props.history.push('/')
+
+        }
         })
+    
 
     }
 
@@ -100,4 +118,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
