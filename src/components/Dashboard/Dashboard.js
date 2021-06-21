@@ -22,7 +22,7 @@ class Dashboard extends Component {
     createPost(event){
         event.preventDefault()
 
-        const userToken = sessionStorage.getItem('token')
+        const userToken = JSON.parse(sessionStorage.getItem('token'))
 
         fetch(`${this.state.URL}/posts`, {
             method: "POST",
@@ -50,9 +50,9 @@ class Dashboard extends Component {
         fetch(`${this.state.URL}/posts`,{
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `bearer ${userToken}`
             },
-            authorization: `Bearer ${userToken}`
         })
     }
 
