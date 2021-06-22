@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
 import React, { Component } from 'react';
 import Login from './components/Login/Login';
 import { Switch, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard/Dashboard';
+import Account from './components/Account/Account';
 // import Navigation from './components/Navigation/Navigation';
 
 class App extends Component {
@@ -12,7 +12,6 @@ class App extends Component {
     return (
       <div>
 
-        {/* <Navigation/> */}
 
         <Switch>
 
@@ -22,6 +21,10 @@ class App extends Component {
 
       <Route exact path="/dashboard">
         <Dashboard />
+      </Route>
+
+      <Route exact path="/account">
+        <Account/>
       </Route>
 
       </Switch>
