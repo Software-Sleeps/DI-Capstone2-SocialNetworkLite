@@ -4,6 +4,7 @@ import CreateUser from '../CreateUser/CreateUser';
 import './Login.css'
 import { withRouter } from 'react-router'
 import {Form, Button} from 'react-bootstrap'
+import Alert from 'react-bootstrap/Alert'
 
 class Login extends Component {
     constructor(props){
@@ -11,15 +12,26 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            showAlert: false,
 
             //temporary until passed to props
             URL: 'https://socialnetworklite.herokuapp.com',
-            token: ''
         }
 
         this.handleUsernameChange=this.handleUsernameChange.bind(this)
         this.handlePasswordChange=this.handlePasswordChange.bind(this)
         this.handleLogin=this.handleLogin.bind(this)
+        this.closeAlert=this.closeAlert.bind(this)
+        this.openAlert= this.openAlert.bind(this)
+    }
+
+    //handle alert
+    closeAlert(){
+        this.setState({showAlert: false})
+    }
+
+    openAlert(){
+        this.setState({showAlert: true})
     }
 
     //for username
@@ -55,20 +67,18 @@ class Login extends Component {
         .then(data =>{
             console.log("ALL login data", data)
 
-            if(data.statusCode > 399){
-
-                //display error message
-
-            } else {
-
             this.setState({
-                //changing token state value to token in data
-                token: data.token,
-
                 //resets username and password inputs
                 username: "",
                 password: ""
             })
+
+            if(data.statusCode > 399){
+
+
+                //display error message
+                this.openAlert()
+            } else {
 
             //stores token to access throughout account
             sessionStorage.setItem('token', JSON.stringify(data.token))
@@ -93,6 +103,19 @@ class Login extends Component {
                     <h2>Login</h2>
                     <p>Sign in to continue</p>
                         </div>
+                    <div className="w-25">
+                        <Alert 
+                        className="d-flex justify-content-center"
+                        variant="danger" 
+                        show={this.state.showAlert} 
+                        onClose={this.closeAlert} 
+                        dismissible>
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>
+            Error Logging in! Please Try Again!
+          </p>
+        </Alert>
+        </div>
                 <form onSubmit={this.handleLogin} className="p-5">
 
                 <Form.Group controlId="formBasicEmail" className="p-inline pb-3">
