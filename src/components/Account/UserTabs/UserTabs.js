@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Tabs, Tab, Container, Row, Col} from 'react-bootstrap'
+import User from './User/User'
 import './UserTabs.css'
 class UserTabs extends Component {
 
@@ -12,9 +13,11 @@ class UserTabs extends Component {
        <Col className={"nav-justified"}>         
 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
 
+
   <Tab eventKey="user" title="User" >
-      <h1>Hello world</h1>
+     <User/>
   </Tab>
+
 
   <Tab eventKey="aboutMe" title="About Me" >
         <h1>Hello world from about me</h1>
