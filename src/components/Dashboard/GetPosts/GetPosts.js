@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Toast } from 'react-bootstrap'
 class GetPosts extends Component {
 constructor(props){
     super(props)
@@ -36,9 +36,15 @@ fetch(`${this.state.URL}/posts?limit=5`,{
         const allPosts = this.state.posts.map(element => {
             return (
             <div>
-                <p>{element.text}</p>
-                
-            </div>
+                <Toast>
+    <Toast.Header>
+      <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+      <strong className="mr-auto">Bootstrap</strong>
+      <small>just now</small>
+    </Toast.Header>
+    <Toast.Body><p>{element.text}</p></Toast.Body>
+  </Toast>      
+    </div>
             )
         })
         return (
