@@ -5,14 +5,15 @@ import React, { Component } from 'react';
 import Login from './components/Login/Login';
 import { Switch, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard/Dashboard';
-// import Navigation from './components/Navigation/Navigation';
+import Account from './components/Account/Account';
+import Navigation from './components/Navigation/Navigation';
 
 class App extends Component {
   render() {
     return (
       <div>
 
-        {/* <Navigation/> */}
+        <Navigation/>
 
         <Switch>
 
@@ -22,6 +23,10 @@ class App extends Component {
 
       <Route exact path="/dashboard">
         <Dashboard />
+      </Route>
+
+      <Route exact path="/account">
+        <Account/>
       </Route>
 
       </Switch>
