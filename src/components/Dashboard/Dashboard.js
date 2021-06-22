@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GetPosts from './GetPosts/GetPosts';
 
 class Dashboard extends Component {
     constructor(props){
@@ -83,6 +84,9 @@ class Dashboard extends Component {
 
                         <input type="submit" value="submit"/>
                     </form>
+                </div>
+                <div>
+                    <GetPosts />
                 </div>
             </div>
         );
