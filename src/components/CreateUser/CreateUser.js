@@ -95,7 +95,7 @@ class CreateUser extends Component {
             <div className="text-center">
 
                 <Button variant="link" onClick={this.handleModal} className="btn-text">
-                    Create Account
+                    Create an Account
                 </Button>
 
       <Modal 
@@ -155,7 +155,7 @@ class CreateUser extends Component {
                     </Form.Group>
                    <div className="text-center">
                     <Button variant="dark" type="submit" value="submit">
-                        Submit
+                        Create Account
                     </Button>
                     </div>
 

@@ -1,6 +1,7 @@
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import React, { Component } from 'react';
+import React from 'react';
+import Logout from "../Logout/Logout";
 import { Navbar, Nav, Form, Button, FormControl, NavDropdown } from "react-bootstrap";
 import './Navigation.css'
 
@@ -39,7 +40,8 @@ function Navigation(props){
         <NavDropdown.Item>
             
             {/* add logout component here */}
-            Logout
+            {/* Logout */}
+            <Logout/>
             
         </NavDropdown.Item>
 

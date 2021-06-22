@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GetPosts from './GetPosts/GetPosts';
-
+import Navigation from '../Navigation/Navigation';
 class Dashboard extends Component {
     constructor(props){
         super(props)
@@ -60,6 +60,8 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
+                <Navigation/>
+
                 {/* CHECKING TOKEN */}
                 {sessionStorage.getItem('token') !== "" ? 
                 <h4>There is a token</h4> : 
