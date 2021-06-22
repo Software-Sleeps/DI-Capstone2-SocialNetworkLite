@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, Alert } from 'react-bootstrap'
 class CreateUser extends Component {
 
     constructor(props){
@@ -70,7 +70,21 @@ class CreateUser extends Component {
         })
         .then(response => response.json())
         .then(data =>{
-            console.log('this is data from CREATE USER', data)    
+            console.log('this is data from CREATE USER', data) 
+            
+            this.setState({
+                createUN: '',
+                displayName: '',
+                createPW: '',
+            })
+
+            if(data.statusCode > 399){
+                //display error message
+
+            } else {
+                //create alert that thanks the user
+                
+            }
         })
     }
 
@@ -125,7 +139,7 @@ class CreateUser extends Component {
 
                     <Form.Group controlId="formPassword" className="pb-3">
 
-                    <Form.Label htmlFor="createPW">
+                    <Form.Label>
                         Create Password
                         </Form.Label>
 
