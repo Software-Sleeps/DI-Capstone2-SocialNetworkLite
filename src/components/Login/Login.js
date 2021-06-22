@@ -97,31 +97,14 @@ class Login extends Component {
 
                 <Form.Group controlId="formBasicEmail" className="p-inline pb-3">
 
-                    {/* <label htmlFor="username">
-                        Username
-                        </label> */}
-
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text"
                         onChange={this.handleUsernameChange}
                         name={this.state.username}
                         value={this.state.username} 
-                        placeholder="Enter email" 
-                        minLength="3" maxLength="20"
-                        required/>
+                        placeholder="Enter Username" />
 
-                        {/* <input
-                        type="text"
-                        onChange={this.handleUsernameChange}
-                        name={this.state.username}
-                        value={this.state.username}
-                        /> */}
                     </Form.Group>
-
-
-                    {/* <label htmlFor="password">
-                        Password
-                    </label> */}
             
             <Form.Group controlId="formBasicPassword"  className="p-inline pb-3">
 
@@ -134,7 +117,6 @@ class Login extends Component {
                 name={this.state.password}
                 value={this.state.password} 
                 minLength="3" maxLength="20"
-                required
                 />
 
                 </Form.Group>    
@@ -145,6 +127,7 @@ class Login extends Component {
 
                 </form>
 
+                <h6>Or</h6>
 
                 <CreateUser/>
             </div>

@@ -6,7 +6,7 @@
     text-align: start;
 }
 .form-control:not(active), .form-control:active{
-    background-color: lightgray;
+    background-color: #ECECEC;
     border: none;
     border-radius: 5px;
     color: black
