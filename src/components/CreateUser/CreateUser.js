@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Modal, Button, Form } from 'react-bootstrap'
 class CreateUser extends Component {
 
     constructor(props){
@@ -9,6 +9,7 @@ class CreateUser extends Component {
             createUN: '',
             displayName: '',
             createPW: '',
+            showModal: false,
 
             //temporarily as state but will turn URL to props
             URL: 'https://socialnetworklite.herokuapp.com'
@@ -19,6 +20,12 @@ class CreateUser extends Component {
         this.handleDNChange=this.handleDNChange.bind(this)
         this.handlePWChange=this.handlePWChange.bind(this)
     }
+
+
+    //Modal Boolean
+
+    handleModal = () => this.setState({showModal: true})
+    handleClose = () => this.setState({showModal: false})
 
     //for username
     handleUNChange(event){
@@ -68,48 +75,82 @@ class CreateUser extends Component {
     }
 
     render() {
+
+       
         return (
-            <div>
+            <div className="text-center">
 
-                <form onSubmit={this.createUser}>
-                    <label htmlFor="createUN">
-                        Create Username
+                <Button variant="link" onClick={this.handleModal} className="btn-text">
+                    Create Account
+                </Button>
 
-                        <input 
+      <Modal 
+        show={this.state.showModal}
+        onHide={this.handleClose}
+        backdrop="static"
+        keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title className="text-center">Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            
+        <form onSubmit={this.createUser}>
+        <Form.Group controlId="formEmail" className="pb-3">
+                
+                <Form.Label>Create Username</Form.Label>
+                    
+                        <Form.Control 
                         type="text"
                         onChange={this.handleUNChange}
                         name={this.state.createUN}
                         value={this.state.createUN}
+                        placeholder="Jsmith202"
                         />
-                    </label>
+                
+        </Form.Group>
 
+                    <Form.Group controlId="formDisplayName" className="pb-3">
+                       
+                       <Form.Label>Create Display Name</Form.Label>
 
-                    <label htmlFor="displayName">
-                        Create Display Name
-
-                        <input
+                        <Form.Control
                         type="text"
                         onChange={this.handleDNChange}
                         name={this.state.displayName}
                         value={this.state.displayName}
+                        placeholder="Jane Smith"
                         />
-                    </label>
 
-                    <label htmlFor="createPW">
+                    </Form.Group>
+
+                    <Form.Group controlId="formPassword" className="pb-3">
+
+                    <Form.Label htmlFor="createPW">
                         Create Password
+                        </Form.Label>
 
-                        <input
+                        <Form.Control
                         type="password"
                         onChange={this.handlePWChange}
                         name={this.state.createPW}
                         value={this.state.createPW}
+                        placeholder="Choose a Password"
                         />
 
-                    </label>
 
-                    <input type="submit" value="Submit"/>
+                    </Form.Group>
+                   <div className="text-center">
+                    <Button variant="dark" type="submit" value="submit">
+                        Submit
+                    </Button>
+                    </div>
 
                 </form>
+
+
+        </Modal.Body>
+
+      </Modal>
                 
             </div>
         );
