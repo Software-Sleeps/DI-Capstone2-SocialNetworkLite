@@ -4,6 +4,8 @@ import CreateUser from '../CreateUser/CreateUser';
 import './Login.css'
 import { withRouter } from 'react-router'
 import {Form, Button} from 'react-bootstrap'
+import Alert from 'react-bootstrap/Alert'
+import BadRequestAlert from '../BadRequestAlert/BadRequestAlert';
 
 class Login extends Component {
     constructor(props){
@@ -11,15 +13,29 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            showAlert: false,
 
             //temporary until passed to props
             URL: 'https://socialnetworklite.herokuapp.com',
-            token: ''
         }
 
         this.handleUsernameChange=this.handleUsernameChange.bind(this)
         this.handlePasswordChange=this.handlePasswordChange.bind(this)
         this.handleLogin=this.handleLogin.bind(this)
+        this.closeAlert=this.closeAlert.bind(this)
+        this.openAlert= this.openAlert.bind(this)
+    }
+
+    //handle alert
+    closeAlert(){
+        this.setState({showAlert: false})
+        console.log("showAlert should be false", this.state.showAlert)
+
+    }
+
+    openAlert(){
+        this.setState({showAlert: true})
+        console.log("showAlert should be true", this.state.showAlert)
     }
 
     //for username
@@ -58,7 +74,7 @@ class Login extends Component {
             if(data.statusCode > 399){
 
                 //display error message
-
+                this.openAlert()
             } else {
 
             this.setState({
@@ -93,6 +109,13 @@ class Login extends Component {
                     <h2>Login</h2>
                     <p>Sign in to continue</p>
                         </div>
+
+                        <Alert variant="danger" show={this.state.showAlert} onClose={this.closeAlert} dismissible>
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>
+            Error Logging in! Please Try Again!
+          </p>
+        </Alert>
                 <form onSubmit={this.handleLogin} className="p-5">
 
                 <Form.Group controlId="formBasicEmail" className="p-inline pb-3">
