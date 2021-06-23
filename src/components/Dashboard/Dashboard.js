@@ -1,98 +1,136 @@
-import React, { Component } from 'react';
-import GetPosts from './GetPosts/GetPosts';
-import Navigation from '../Navigation/Navigation';
+import React, { Component } from "react";
+import GetPosts from "./GetPosts/GetPosts";
+import Navigation from "../Navigation/Navigation";
+import { Form, Button, Container, Row, Col } from "react-bootstrap/";
+// import Login from "../Authentication/Login/Login";
+
 class Dashboard extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            text: '',
-            //temp value until passed into props
-            URL: 'https://socialnetworklite.herokuapp.com'
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "",
+      //temp value until passed into props
+      URL: "https://socialnetworklite.herokuapp.com",
+    };
 
-        this.handleMessageChange = this.handleMessageChange.bind(this)
-        this.createPost = this.createPost.bind(this)
-    }
+    this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.createPost = this.createPost.bind(this);
+  }
 
-    //change state value
-    handleMessageChange(event){
-        this.setState({text: event.target.value})
-    }
+  //change state value
+  handleMessageChange(event) {
+    this.setState({ text: event.target.value });
+  }
 
-    //post request to submit posts
-    createPost(event){
-        event.preventDefault()
+  //post request to submit posts
+  createPost(event) {
+    event.preventDefault();
 
-        const userToken = JSON.parse(sessionStorage.getItem('token'))
+    const userToken = JSON.parse(sessionStorage.getItem("token"));
 
-        fetch(`${this.state.URL}/posts`, {
-            method: "POST",
-            headers: new Headers({
-                "Content-Type": "application/json",
-                "Authorization": `bearer ${userToken}`
-            }),
-            body: JSON.stringify({text: this.state.text}),
+    fetch(`${this.state.URL}/posts`, {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: `bearer ${userToken}`,
+      }),
+      body: JSON.stringify({ text: this.state.text }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        //data goes here
+        console.log("Post Request for Posts", data);
+        console.log(userToken);
+      })
+      .catch((error) => console.log(error));
+  }
 
-        })
-        .then(response => response.json())
-        .then(data =>{
-            //data goes here    
-            console.log("Post Request for Posts", data)
-            console.log(userToken)
-        }).catch(error => console.log(error))
+  //checking if Posts is in database
+  //with automatic get request to console.log
+  componentDidMount() {
+    const userToken = sessionStorage.getItem("token");
 
-    }
+    fetch(`${this.state.URL}/posts`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${userToken}`,
+      },
+    });
+  }
+  // //grab username from login
 
-    //checking if Posts is in database
-    //with automatic get request to console.log
-    componentDidMount(){
-        const userToken = sessionStorage.getItem('token')
+  // handleUsername(event) {
+  //     this.setState({ username: event.target.value});
+  // }
 
-        fetch(`${this.state.URL}/posts`,{
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `bearer ${userToken}`
-            },
-        })
-    }
+  render() {
+    let mauve = {
+      backgroundColor: "#9A6A5C",
+      color: "black",
+      width: "500px",
+      height: "50px",
+      border: "1px black solid"
+    };
+    let textAreaField = {
+      height: "300px",
+      width: "500px",
+      border: "2px black solid",
+    };
+    return (
+      <div>
+        <Navigation />
 
-    render() {
-        return (
-            <div>
-                <Navigation/>
+        {/* CHECKING TOKEN */}
+        {/* {sessionStorage.getItem("token") !== "" ? (
+          <h4>There is a token</h4>
+        ) : (
+          <h6>There is no token</h6>
+        )} */}
+        {/* CHECKING TOKEN */}
 
-                {/* CHECKING TOKEN */}
-                {sessionStorage.getItem('token') !== "" ? 
-                <h4>There is a token</h4> : 
-                <h6>There is no token</h6>
-                }
-                {/* CHECKING TOKEN */}
+        <div>
+          <Container>
+            <Row>
+              <Col className="flex-direction-column" sm={8}>
+                <h1 class="text-center"> Welcome {this.state.username}</h1>
+                <form onSubmit={this.createPost}>
+                  <Form.Label controlId={this.state.text}>
+                    <h3>Create a Post</h3>
+                  </Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Whats the tea?"
+                    style={textAreaField}
+                    onChange={this.handleMessageChange}
+                    name={this.state.text}
+                    value={this.state.text}
+                  />
 
-                <h1> This is the Dashboard</h1>
+                  <div className="pt-4">
+                    <Button style={mauve} value="submit" type="submit">
+                      Spill it
+                    </Button>
+                  </div>
+                </form>
+              </Col>
+              <Col sm={4}>
+                <h1>View Profile</h1>
+              </Col>
+            </Row>
+            <Col>
+            <GetPosts />
+            </Col>
+            
+          </Container>
+        </div>
 
-                <div>
-                    <form onSubmit={this.createPost}>
-                        <label htmlFor={this.state.text}>Create a Post
-                        <input
-                        type="text"
-                        onChange={this.handleMessageChange}
-                        name={this.state.text}
-                        value={this.state.text}
-                        />                    
-                    
-                        {/* </input> */}
-                        </label>
-
-                        <input type="submit" value="submit"/>
-                    </form>
-                </div>
-                <div>
-                    <GetPosts />
-                </div>
-            </div>
-        );
-    }
+        <div>
+          
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Dashboard;

@@ -9,17 +9,17 @@ function Navigation(props){
 
     //need to add CSS classes in objects
     const styleLink = {
-        color: "white",
+        color: "black",
         textDecoration: "none"
     }
 
     const searchButton = {
         backgroundColor: "inherit",
-        color: "white",
-        border: "white 1px solid",
+        color: "black",
+        border: "black 1px solid",
         //trying to add a CSS hover attribute
         "&:hover": {
-            backgroundColor: 'white',
+            backgroundColor: 'black',
             color: "black"
         }
     }
