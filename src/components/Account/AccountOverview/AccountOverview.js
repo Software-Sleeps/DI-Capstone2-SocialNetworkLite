@@ -3,8 +3,37 @@ import "./AccountOverview.css";
 import testAccount from '../../../icons8-test-account-96.png'
 import { Button, Container, Row, Col } from 'react-bootstrap'
 class AccountOverview extends Component {
-
+constructor(props){
+  super(props)
+  this.state = {
+    URL: "https://socialnetworklite.herokuapp.com",
+    username: JSON.parse(sessionStorage.getItem('username')),
+    displayName: '',
+    aboutMe: '',
+    picture: ''
+  }
+}
   
+componentDidMount(){
+  let userToken = JSON.parse(sessionStorage.getItem('token'))
+  fetch(`${this.state.URL}/users/${this.state.username}`,{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `bearer ${userToken}`
+    }})
+    .then(response => response.json())
+    .then(data => {
+
+      console.log('this is data from get user by ID', data)
+
+      this.setState({
+        displayName: data.user.displayName,
+        aboutMe: data.user.about,
+        picture: data.user.pictureLocation
+      })
+    })
+}
 
   render() {
     let adjustButtons = {
@@ -19,8 +48,8 @@ class AccountOverview extends Component {
           <Row>
           <Col>
             <img src={testAccount} alt=""/>
-            <h4>Test Account</h4>
-            <p>Username</p>
+            <h4>{this.state.displayName}</h4>
+            <p>{this.state.username}</p>
             </Col>
           {/* PIC & USERNAME */}
 
