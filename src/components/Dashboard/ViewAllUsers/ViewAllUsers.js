@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import {Card, Button} from 'react-bootstrap'
+import {Card, Button, Image} from 'react-bootstrap'
+import testAccount from '../../../icons8-test-account-96.png'
+
 // import { withRouter } from "react-router-dom";
 
 class ViewAllUsers extends Component {
@@ -39,6 +41,15 @@ class ViewAllUsers extends Component {
         <Card className="text-center">
         <Card.Header>{element.username}</Card.Header>
         <Card.Body>
+
+          {
+            element.pictureLocation === null ? (
+              <Image src={testAccount} roundedCircle />
+            ) : (
+          <Image src={element.pictureLocation} roundedCircle />
+            )
+          }
+
           <Card.Title>{element.displayName}</Card.Title>
           <Card.Text>
           {element.about === "" ? (<p>No about yet</p>) : 
