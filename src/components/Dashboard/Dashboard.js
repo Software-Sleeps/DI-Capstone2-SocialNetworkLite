@@ -98,6 +98,9 @@ class Dashboard extends Component {
     let colPadding = {
         paddingTop: "7%"
     }
+    let customizeFont= {
+        fontFamily: "Nunito, sans-serif"
+      }
     return (
       <div>
         <Navigation />
@@ -111,7 +114,7 @@ class Dashboard extends Component {
         {/* CHECKING TOKEN */}
 
         <div>
-        <h1 className="text-center"> Welcome {this.state.displayName}</h1>
+        <h1 className="text-center" style={customizeFont}> Welcome {this.state.displayName}</h1>
           <Container>
             <Row>
               <Col className="flex-direction-column" sm={8}>
