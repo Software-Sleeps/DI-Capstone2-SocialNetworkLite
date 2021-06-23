@@ -114,15 +114,18 @@ class Dashboard extends Component {
                     </Button>
                   </div>
                 </form>
+
+                <Col>
+            <GetPosts />
+            </Col>
               </Col>
               <Col>
                   <h1> View Users </h1>
                 <ViewAllUsers />
               </Col>
+              
             </Row>
-            <Col>
-            <GetPosts />
-            </Col>
+            
             
           </Container>
         </div>
