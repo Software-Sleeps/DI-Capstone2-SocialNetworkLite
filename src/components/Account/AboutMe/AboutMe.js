@@ -6,6 +6,9 @@ class AboutMe extends Component {
     super(props);
     this.state = {
       toggleAM: false,
+      URL: "https://socialnetworklite.herokuapp.com",
+      username: JSON.parse(sessionStorage.getItem('username')),
+      aboutMe: ''
     };
     this.handleToggleAM = this.handleToggleAM.bind(this);
   }
@@ -15,6 +18,25 @@ class AboutMe extends Component {
       ? this.setState({ toggleAM: false })
       : this.setState({ toggleAM: true });
   }
+
+  componentDidMount(){
+    let userToken = JSON.parse(sessionStorage.getItem('token'))
+    
+    fetch(`${this.state.URL}/users/${this.state.username}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `bearer ${userToken}`
+      }})
+      .then(response => response.json())
+      .then(data => {
+  
+        this.setState({
+          aboutMe: data.user.about,
+        })
+      })
+  }
+
   render() {
     let inputSize = {
       width: "60%",
@@ -29,7 +51,7 @@ class AboutMe extends Component {
               {" "}
               <Col className="p-5">
                 <Col className="row-padding">
-                  <h4>About Me Goes Here</h4>
+                  <h4>{this.state.aboutMe}</h4>
                 </Col>
                 <Button onClick={this.handleToggleAM}>
                   <svg
