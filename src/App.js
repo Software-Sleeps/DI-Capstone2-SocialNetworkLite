@@ -9,11 +9,9 @@ import Account from './components/Account/Account';
 
 class App extends Component {
   render() {
-    let customizeFont= {
-      fontFamily: "Nunito, sans-serif"
-    }
+    
     return (
-      <div style={customizeFont}>
+      <div>
 
 
         <Switch>
