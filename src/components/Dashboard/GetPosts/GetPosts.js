@@ -23,18 +23,18 @@ class GetPosts extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("GET Request for Posts", data);
         this.setState({
           posts: data.posts,
         });
-        console.log(typeof this.state.posts);
+
+        console.log('checking username',JSON.parse(sessionStorage.getItem('username')));
       });
   }
   render() {
     
-    const allPosts = this.state.posts.map((element) => {
+    const allPosts = this.state.posts.map((element, index) => {
       return (
-        <div class="m-4">
+        <div className="m-4">
           <Container>
             <Row>
           <Toast>
@@ -48,7 +48,7 @@ class GetPosts extends Component {
               <small>just now</small>
             </Toast.Header>
             <Toast.Body class="m-5">
-              <p>{element.text}</p>
+              <p key={`${element.text}-${index}`}>{element.text}</p>
             </Toast.Body>
           </Toast>
           </Row>
@@ -58,7 +58,7 @@ class GetPosts extends Component {
     });
     return (
       <div>
-        <div class="m-5">{allPosts}</div>
+        <div className="m-5">{allPosts}</div>
         {/* <h1>This is GET post</h1> */}
       </div>
     );
