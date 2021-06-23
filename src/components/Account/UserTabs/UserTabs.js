@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Tabs, Tab, Container, Row, Col} from 'react-bootstrap'
 import './UserTabs.css'
 import User from '../User/User'
+import AboutMe from '../AboutMe/AboutMe';
+import Posts from '../Posts/Posts'
 
 class UserTabs extends Component {
 
@@ -21,12 +23,11 @@ class UserTabs extends Component {
 
 
   <Tab eventKey="aboutMe" title="About Me" >
-        <h1>Hello world from about me</h1>
+            <AboutMe/>
   </Tab>
 
-     <Tab eventKey="posts" title="Posts" >
-        <h1>Hello world from posts</h1>
-
+     <Tab eventKey="posts" title="My Posts" >
+        <Posts/>
     </Tab>
     
     </Tabs>
