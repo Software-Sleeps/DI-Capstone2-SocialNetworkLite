@@ -8,7 +8,7 @@ constructor(props){
   this.state = {
     URL: "https://socialnetworklite.herokuapp.com",
     username: JSON.parse(sessionStorage.getItem('username')),
-    displayName: '',
+    displayName: JSON.parse(sessionStorage.getItem('displayName')),
     aboutMe: '',
     picture: ''
   }
@@ -28,7 +28,7 @@ componentDidMount(){
       console.log('this is data from get user by ID', data)
 
       this.setState({
-        displayName: data.user.displayName,
+        //displayName: data.user.displayName,
         aboutMe: data.user.about,
         picture: data.user.pictureLocation
       })

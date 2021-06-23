@@ -12,7 +12,8 @@ class Dashboard extends Component {
       text: "",
       //temp value until passed into props
       URL: "https://socialnetworklite.herokuapp.com",
-      username: JSON.parse(sessionStorage.getItem('username'))
+      username: JSON.parse(sessionStorage.getItem('username')),
+      displayName: JSON.parse(sessionStorage.getItem('displayName'))
     };
 
     this.handleMessageChange = this.handleMessageChange.bind(this);
@@ -61,6 +62,22 @@ class Dashboard extends Component {
         Authorization: `bearer ${userToken}`,
       },
     });
+
+    fetch(`${this.state.URL}/users/${this.state.username}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `bearer ${userToken}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      //both do the same thing
+      sessionStorage.setItem('displayName', JSON.stringify(data.user.displayName))
+        this.setState({displayName: data.user.displayName})
+    })
+
+
   }
 
   render() {
@@ -94,7 +111,7 @@ class Dashboard extends Component {
         {/* CHECKING TOKEN */}
 
         <div>
-        <h1 className="text-center"> Welcome {this.state.username}</h1>
+        <h1 className="text-center"> Welcome {this.state.displayName}</h1>
           <Container>
             <Row>
               <Col className="flex-direction-column" sm={8}>
