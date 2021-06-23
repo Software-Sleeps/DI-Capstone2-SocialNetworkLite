@@ -8,10 +8,18 @@ class User extends Component {
     this.state = {
       //will toggle columns in User Tab section
       toggleDN: false,
-      toggleUN: false
+      toggleUN: false,
+      URL: "https://socialnetworklite.herokuapp.com",
+      username: JSON.parse(sessionStorage.getItem('username')),
+      un: '',
+      displayName: '',
+     
     };
     this.handleToggleDN = this.handleToggleDN.bind(this)
     this.handleToggleUN = this.handleToggleUN.bind(this)
+    this.handleDNChange = this.handleDNChange.bind(this)
+    this.handleUNChange = this.handleUNChange.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
   //toggle state value
@@ -28,6 +36,58 @@ class User extends Component {
     : this.setState({ toggleUN: true });
   }
 
+  //changes state value
+  handleDNChange(event){
+    this.setState({displayName: event.target.value})
+  }
+
+  handleUNChange(event){
+    this.setState({un: event.target.value})
+  }
+
+  handleUpdate(event){
+    event.preventDefault()
+
+    let userToken = JSON.parse(sessionStorage.getItem('token'))
+   
+    fetch(`${this.state.URL}/users/${this.state.username}`,{
+      method: "PATCH", 
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `bearer ${userToken}`,
+        // 'Mode': "no-cors"
+      },
+      body: JSON.stringify({
+        displayName: this.state.displayName
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("THIS IS PATCH DATA",data)
+        this.setState({displayName: data.user.displayName})
+        this.handleToggleDN()
+    })
+
+
+  }
+  componentDidMount(){
+    let userToken = JSON.parse(sessionStorage.getItem('token'))
+    
+    fetch(`${this.state.URL}/users/${this.state.username}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `bearer ${userToken}`
+      }})
+      .then(response => response.json())
+      .then(data => {
+  
+        this.setState({
+          displayName: data.user.displayName,
+        })
+      })
+  }
+
   render() {
     let inputSize = {
       width: "60%",
@@ -41,7 +101,7 @@ class User extends Component {
             <Row className={"text-center row-padding"}>
               {" "}
               <Col className="p-4">
-                <h4>Display Name goes here</h4>
+                <h4>{this.state.displayName}</h4>
               </Col>
               <Col className="p-4">
                 <Button onClick={this.handleToggleDN}>
@@ -63,8 +123,14 @@ class User extends Component {
             <Row className={"text-center row-padding"}>
               <Col className="p-3">
                 <Row>
-                  <FormControl style={inputSize} placeholder="Change Display Name"/>
-                  <Button>
+                 <form onSubmit={this.handleUpdate}>
+                  <FormControl 
+                  style={inputSize} 
+                  placeholder="Change Display Name"
+                  name={this.state.displayName}
+                  value={this.state.displayName}
+                  onChange={this.handleDNChange}/>
+                  <Button type="submit" value="submit">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -76,6 +142,7 @@ class User extends Component {
                       <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
                     </svg>
                   </Button>
+                  </form>
                 </Row>
               </Col>{" "}
               <Col className="p-4">
@@ -101,7 +168,7 @@ class User extends Component {
             <Row className={"text-center row-padding"}>
             {" "}
             <Col className="p-4">
-              <h4>Username goes here</h4>
+              <h4>{this.state.username}</h4>
             </Col>
             <Col className="p-4">
               <Button onClick={this.handleToggleUN}>
@@ -123,7 +190,12 @@ class User extends Component {
             <Row className={"text-center row-padding"}>
             <Col className="p-3">
               <Row>
-                <FormControl style={inputSize} placeholder="Change Username"/>
+                <FormControl 
+                style={inputSize} 
+                placeholder="Change Username"
+                name={this.state.un}
+                value={this.state.un}
+                onChange={this.handleUNChange}/>
                 <Button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
