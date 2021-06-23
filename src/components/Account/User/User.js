@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './User.css'
-import { Container, Row, Col, FormControl, Button } from "react-bootstrap";
+import { Container, Row, Col, FormControl, Button, Form } from "react-bootstrap";
 
 class User extends Component {
   constructor(props) {
@@ -8,18 +8,20 @@ class User extends Component {
     this.state = {
       //will toggle columns in User Tab section
       toggleDN: false,
-      toggleUN: false,
+      togglePW: false,
       URL: "https://socialnetworklite.herokuapp.com",
       username: JSON.parse(sessionStorage.getItem('username')),
-      un: '',
       displayName: '',
+      password: '' 
      
     };
+
     this.handleToggleDN = this.handleToggleDN.bind(this)
-    this.handleToggleUN = this.handleToggleUN.bind(this)
+    this.handleTogglePW = this.handleTogglePW.bind(this)
     this.handleDNChange = this.handleDNChange.bind(this)
-    this.handleUNChange = this.handleUNChange.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handlePWChange = this.handlePWChange.bind(this)
+    this.handleDNUpdate = this.handleDNUpdate.bind(this)
+    this.handlePWUpdate = this.handlePWUpdate.bind(this)
   }
 
   //toggle state value
@@ -30,10 +32,10 @@ class User extends Component {
       : this.setState({ toggleDN: true });
   }
 
-  handleToggleUN(){
-    this.state.toggleUN
-    ? this.setState({ toggleUN: false })
-    : this.setState({ toggleUN: true });
+  handleTogglePW(){
+    this.state.togglePW
+    ? this.setState({ togglePW: false })
+    : this.setState({ togglePW: true });
   }
 
   //changes state value
@@ -41,11 +43,11 @@ class User extends Component {
     this.setState({displayName: event.target.value})
   }
 
-  handleUNChange(event){
-    this.setState({un: event.target.value})
+  handlePWChange(event){
+    this.setState({password: event.target.value})
   }
 
-  handleUpdate(event){
+  handleDNUpdate(event){
     event.preventDefault()
 
     let userToken = JSON.parse(sessionStorage.getItem('token'))
@@ -55,7 +57,6 @@ class User extends Component {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `bearer ${userToken}`,
-        // 'Mode': "no-cors"
       },
       body: JSON.stringify({
         displayName: this.state.displayName
@@ -63,14 +64,36 @@ class User extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log("THIS IS PATCH DATA",data)
+      console.log("THIS IS PATCH DATA FOR DISPLAY NAME",data)
+        sessionStorage.setItem('displayName', JSON.stringify(data.user.displayName))
         this.setState({displayName: data.user.displayName})
         this.handleToggleDN()
-    })
+    })}
 
+    handlePWUpdate(event){
+      event.preventDefault()
+  
+      let userToken = JSON.parse(sessionStorage.getItem('token'))
+     
+      fetch(`${this.state.URL}/users/${this.state.username}`,{
+        method: "PATCH", 
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `bearer ${userToken}`,
+        },
+        body: JSON.stringify({
+          password: this.state.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("THIS IS PATCH DATA FOR USERNAME",data)
 
-  }
+          this.handleTogglePW()
+      })}
+
   componentDidMount(){
+
     let userToken = JSON.parse(sessionStorage.getItem('token'))
     
     fetch(`${this.state.URL}/users/${this.state.username}`,{
@@ -93,6 +116,12 @@ class User extends Component {
       width: "60%",
       marginLeft: "20%"
     };
+
+    let formStyle = {
+      width: "90%",
+      display: "flex",
+      alignItems: "row"
+    }
 
     return (
       <div>
@@ -123,7 +152,7 @@ class User extends Component {
             <Row className={"text-center row-padding"}>
               <Col className="p-3">
                 <Row>
-                 <form onSubmit={this.handleUpdate}>
+                 <Form style={formStyle} onSubmit={this.handleDNUpdate}>
                   <FormControl 
                   style={inputSize} 
                   placeholder="Change Display Name"
@@ -142,7 +171,7 @@ class User extends Component {
                       <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
                     </svg>
                   </Button>
-                  </form>
+                  </Form>
                 </Row>
               </Col>{" "}
               <Col className="p-4">
@@ -164,14 +193,14 @@ class User extends Component {
             </Row>
           )}
 
-{!this.state.toggleUN ? (
+{!this.state.togglePW ? (
             <Row className={"text-center row-padding"}>
             {" "}
             <Col className="p-4">
-              <h4>{this.state.username}</h4>
+              <h4>Password</h4>
             </Col>
             <Col className="p-4">
-              <Button onClick={this.handleToggleUN}>
+              <Button onClick={this.handleTogglePW}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -182,7 +211,7 @@ class User extends Component {
                 >
                   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                 </svg>{" "}
-                Update
+                Change
               </Button>
             </Col>
           </Row>
@@ -190,13 +219,14 @@ class User extends Component {
             <Row className={"text-center row-padding"}>
             <Col className="p-3">
               <Row>
+                <Form style={formStyle} onSubmit={this.handlePWUpdate}>
                 <FormControl 
                 style={inputSize} 
-                placeholder="Change Username"
-                name={this.state.un}
-                value={this.state.un}
-                onChange={this.handleUNChange}/>
-                <Button>
+                placeholder="Change Password"
+                name={this.state.password}
+                value={this.state.password}
+                onChange={this.handlePWChange}/>
+                <Button onClick={this.handlePWUpdate}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -208,10 +238,11 @@ class User extends Component {
                     <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
                   </svg>
                 </Button>
+                </Form>
               </Row>
             </Col>{" "}
             <Col className="p-4">
-              <Button onClick={this.handleToggleUN}>
+              <Button onClick={this.handleTogglePW}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
