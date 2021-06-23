@@ -122,7 +122,7 @@ class Dashboard extends Component {
             <GetPosts />
             </Col>
               </Col>
-              <Col style={colPadding}>
+              <Col className={"overflow-auto"} style={colPadding}>
                   <h1> View Users </h1>
                 <ViewAllUsers />
               </Col>
