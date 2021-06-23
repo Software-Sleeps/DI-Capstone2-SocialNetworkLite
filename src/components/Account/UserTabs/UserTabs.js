@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Tabs, Tab, Container, Row, Col} from 'react-bootstrap'
-import User from './User/User'
 import './UserTabs.css'
+import User from '../User/User'
+
 class UserTabs extends Component {
 
 
