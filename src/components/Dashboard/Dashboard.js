@@ -12,6 +12,7 @@ class Dashboard extends Component {
       text: "",
       //temp value until passed into props
       URL: "https://socialnetworklite.herokuapp.com",
+      username: JSON.parse(sessionStorage.getItem('username'))
     };
 
     this.handleMessageChange = this.handleMessageChange.bind(this);
@@ -122,7 +123,7 @@ class Dashboard extends Component {
             <GetPosts />
             </Col>
               </Col>
-              <Col className={"overflow-auto"} style={colPadding}>
+              <Col className={"overflow-auto text-center"} style={colPadding}>
                   <h1> View Users </h1>
                 <ViewAllUsers />
               </Col>
