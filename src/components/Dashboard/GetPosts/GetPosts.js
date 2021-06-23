@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Toast, Container, Row, Col } from "react-bootstrap";
+import { Toast, Container, Row } from "react-bootstrap";
 class GetPosts extends Component {
   constructor(props) {
     super(props);
