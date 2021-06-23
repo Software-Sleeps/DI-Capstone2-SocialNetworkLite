@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GetPosts from "./GetPosts/GetPosts";
 import Navigation from "../Navigation/Navigation";
 import { Form, Button, Container, Row, Col } from "react-bootstrap/";
+import ViewAllUsers from "./ViewAllUsers/ViewAllUsers";
 // import Login from "../Authentication/Login/Login";
 
 class Dashboard extends Component {
@@ -113,14 +114,18 @@ class Dashboard extends Component {
                     </Button>
                   </div>
                 </form>
-              </Col>
-              <Col sm={4}>
-                <h1>View Profile</h1>
-              </Col>
-            </Row>
-            <Col>
+
+                <Col>
             <GetPosts />
             </Col>
+              </Col>
+              <Col>
+                  <h1> View Users </h1>
+                <ViewAllUsers />
+              </Col>
+              
+            </Row>
+            
             
           </Container>
         </div>
