@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import Navigation from '../Navigation/Navigation';
+import AccountOverview from './AccountOverview/AccountOverview';
+import UserTabs from './UserTabs/UserTabs';
 
 class Account extends Component {
     render() {
         return (
             <div>
                 <Navigation/>
-                <h1>ViewAccounts!</h1>
+                
+                <div>
+                    <AccountOverview/>
+                    <UserTabs/>
+                </div>
             </div>
         );
     }
