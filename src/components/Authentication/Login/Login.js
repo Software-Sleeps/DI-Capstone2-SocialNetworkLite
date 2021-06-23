@@ -65,7 +65,9 @@ class Login extends Component {
         })
         .then(response => response.json())
         .then(data =>{
-            console.log("ALL login data", data)
+            
+            sessionStorage.setItem('username', JSON.stringify(this.state.username))
+
 
             this.setState({
                 //resets username and password inputs
@@ -84,7 +86,7 @@ class Login extends Component {
             sessionStorage.setItem('token', JSON.stringify(data.token))
 
             //making sure that token was stored
-            console.log(sessionStorage.getItem('token'))
+            // console.log(JSON.parse(sessionStorage.getItem('token')))
 
             this.props.history.push('/dashboard')
 

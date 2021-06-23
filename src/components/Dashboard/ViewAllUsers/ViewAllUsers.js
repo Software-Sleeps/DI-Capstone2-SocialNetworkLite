@@ -35,28 +35,30 @@ class ViewAllUsers extends Component {
       color: "white"
     }
 
-    const getAllUsers = this.state.allUsers.map((element) => {
+    const getAllUsers = this.state.allUsers.map((element, index) => {
       return (
         <div className="pt-4">
         <Card className="text-center">
-        <Card.Header>{element.username}</Card.Header>
+        <Card.Header key={`${element.username}-${index}`}>{element.username}</Card.Header>
         <Card.Body>
-
+          <div>
           {
             element.pictureLocation === null ? (
               <Image src={testAccount} roundedCircle />
             ) : (
-          <Image src={element.pictureLocation} roundedCircle />
+          <Image src={element.pictureLocation} roundedCircle key={`${element.pictureLocation}-${index}`}/>
             )
           }
 
-          <Card.Title>{element.displayName}</Card.Title>
+          <Card.Title key={`${element.displayName}-${index}`}>{element.displayName}</Card.Title>
           <Card.Text>
           {element.about === "" ? (<p>No about yet</p>) : 
-        (<p>{element.about}</p>)}          
+        (<p key={`${element.about}-${index}`}>{element.about}</p>)}   
         </Card.Text>
 
           <Button variant={mauveButton} style={mauveButton}>Check Posts</Button>
+          </div>       
+
         </Card.Body>
         <Card.Footer className="text-muted">2 days ago</Card.Footer>
       </Card>

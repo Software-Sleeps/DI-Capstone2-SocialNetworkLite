@@ -93,13 +93,13 @@ class Dashboard extends Component {
         {/* CHECKING TOKEN */}
 
         <div>
-        <h1 class="text-center"> Welcome {this.state.username}</h1>
+        <h1 className="text-center"> Welcome {this.state.username}</h1>
           <Container>
             <Row>
               <Col className="flex-direction-column" sm={8}>
                
                 <form onSubmit={this.createPost}>
-                  <Form.Label controlId={this.state.text}>
+                  <Form.Label controlid={this.state.text}>
                     <h3>Create a Post</h3>
                   </Form.Label>
                   <Form.Control
