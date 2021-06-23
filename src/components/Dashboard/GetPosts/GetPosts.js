@@ -8,6 +8,7 @@ class GetPosts extends Component {
 
       //Temporary
       URL: "https://socialnetworklite.herokuapp.com",
+      username: JSON.parse(sessionStorage.getItem('username'))
     };
   }
 
@@ -44,7 +45,7 @@ class GetPosts extends Component {
                 className="rounded mr-2"
                 alt=""
               />
-              <strong className="mr-auto">Bootstrap</strong>
+              <strong className="mr-auto">{this.state.username}</strong>
               <small>just now</small>
             </Toast.Header>
             <Toast.Body class="m-5">
