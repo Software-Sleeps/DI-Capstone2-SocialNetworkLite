@@ -42,6 +42,8 @@ class Dashboard extends Component {
         //data goes here
         console.log("Post Request for Posts", data);
         console.log(userToken);
+        //emptys out input box
+        this.setState({text: ""})
       })
       .catch((error) => console.log(error));
   }
@@ -59,25 +61,25 @@ class Dashboard extends Component {
       },
     });
   }
-  // //grab username from login
-
-  // handleUsername(event) {
-  //     this.setState({ username: event.target.value});
-  // }
 
   render() {
     let mauve = {
       backgroundColor: "#9A6A5C",
-      color: "black",
+      color: "white",
       width: "500px",
       height: "50px",
-      border: "1px black solid"
+      border: "1px white solid"
     };
+    
     let textAreaField = {
       height: "300px",
       width: "500px",
-      border: "2px black solid",
+      border: "2px white solid",
     };
+
+    let colPadding = {
+        paddingTop: "7%"
+    }
     return (
       <div>
         <Navigation />
@@ -91,10 +93,11 @@ class Dashboard extends Component {
         {/* CHECKING TOKEN */}
 
         <div>
+        <h1 class="text-center"> Welcome {this.state.username}</h1>
           <Container>
             <Row>
               <Col className="flex-direction-column" sm={8}>
-                <h1 class="text-center"> Welcome {this.state.username}</h1>
+               
                 <form onSubmit={this.createPost}>
                   <Form.Label controlId={this.state.text}>
                     <h3>Create a Post</h3>
@@ -119,11 +122,11 @@ class Dashboard extends Component {
             <GetPosts />
             </Col>
               </Col>
-              <Col>
+              <Col style={colPadding}>
                   <h1> View Users </h1>
                 <ViewAllUsers />
               </Col>
-              
+
             </Row>
             
             

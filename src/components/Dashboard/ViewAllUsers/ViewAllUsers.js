@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {Card, Button} from 'react-bootstrap'
+import { withRouter } from "react-router-dom";
 
 class ViewAllUsers extends Component {
   constructor(props) {
@@ -26,18 +28,28 @@ class ViewAllUsers extends Component {
       });
   }
   render() {
+    let mauveButton = {
+      backgroundColor: "#9A6A5C",
+      color: "white"
+    }
+
     const getAllUsers = this.state.allUsers.map((element) => {
       return (
-       
-        <div class="card m-4">
-        <div class="card-body">
-            <h5>{element.displayName}</h5>
-            
-          <h6> {element.username}</h6>
-        {element.about === "" ? (<p>No about yet</p>) : 
-        (<p>{element.about}</p>)}
-        </div>
-        </div>
+        <div className="pt-4">
+        <Card className="text-center">
+        <Card.Header>{element.username}</Card.Header>
+        <Card.Body>
+          <Card.Title>{element.displayName}</Card.Title>
+          <Card.Text>
+          {element.about === "" ? (<p>No about yet</p>) : 
+        (<p>{element.about}</p>)}          
+        </Card.Text>
+
+          <Button variant={mauveButton} style={mauveButton}>Check Posts</Button>
+        </Card.Body>
+        <Card.Footer className="text-muted">2 days ago</Card.Footer>
+      </Card>
+      </div>
       );
     });
     return <div>{getAllUsers}</div>;
