@@ -117,7 +117,7 @@ class AboutMe extends Component {
                       value={this.state.aboutMe}
                       rows={5}
                     />
-                    <Button type="submit" value="submit">
+                    <Button type="submit" value="submit" onClick={this.handleAMUpdate}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
