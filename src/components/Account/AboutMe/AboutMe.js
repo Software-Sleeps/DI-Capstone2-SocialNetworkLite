@@ -109,6 +109,7 @@ class AboutMe extends Component {
                     <Form onSubmit={this.handleAMUpdate}>
 
                     <FormControl
+                      size="lg"
                       style={inputSize}
                       onChange={this.handleAMChange}
                       placeholder="Change About Me"
