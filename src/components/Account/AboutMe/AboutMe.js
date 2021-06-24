@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button, FormControl } from "react-bootstrap";
+import { Container, Row, Col, Button, FormControl, Form } from "react-bootstrap";
 
 class AboutMe extends Component {
   constructor(props) {
@@ -11,12 +11,38 @@ class AboutMe extends Component {
       aboutMe: ''
     };
     this.handleToggleAM = this.handleToggleAM.bind(this);
+    this.handleAMChange = this.handleAMChange.bind(this);
+    this.handleAMUpdate = this.handleAMUpdate.bind(this);
   }
 
   handleToggleAM() {
     this.state.toggleAM
       ? this.setState({ toggleAM: false })
       : this.setState({ toggleAM: true });
+  }
+
+  handleAMChange(event){
+    this.setState({aboutMe: event.target.value})
+  }
+
+  handleAMUpdate(event){
+    event.preventDefault()
+    let userToken = JSON.parse(sessionStorage.getItem('token'))
+
+    fetch(`${this.state.URL}/users/${this.state.username}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": `bearer ${userToken}`
+      },
+      body: JSON.stringify({about: this.state.aboutMe})})
+      .then(response => response.json())
+      .then(data =>{
+        console.log('update about me', data)
+        this.setState({aboutMe: data.user.about})
+      })
+
+      this.handleToggleAM()
   }
 
   componentDidMount(){
@@ -34,6 +60,7 @@ class AboutMe extends Component {
         this.setState({
           aboutMe: data.user.about,
         })
+
       })
   }
 
@@ -46,6 +73,12 @@ class AboutMe extends Component {
     return (
       <div>
         <Container fluid>
+          {this.state.aboutMe === ""? (
+          <div className="text-center pt-5">
+            <h4>What do you want others to know about you?</h4>
+                <p>Add an About Me!</p>
+            </div>) : ("")}
+            
           {!this.state.toggleAM ? (
             <Row className={"text-center row-padding"}>
               {" "}
@@ -73,13 +106,18 @@ class AboutMe extends Component {
               <Col className="p-3">
                 <Row>
                   <Col className="text-center p-5">
+                    <Form onSubmit={this.handleAMUpdate}>
+
                     <FormControl
                       style={inputSize}
+                      onChange={this.handleAMChange}
                       placeholder="Change About Me"
                       as="textarea"
+                      name={this.state.aboutMe}
+                      value={this.state.aboutMe}
                       rows={5}
                     />
-                    <Button>
+                    <Button type="submit" value="submit">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -93,6 +131,7 @@ class AboutMe extends Component {
                       </svg>
                     </Button>
 
+                    </Form>
                     <Col className="p-5">
                       <Button onClick={this.handleToggleAM}>
                         <svg
