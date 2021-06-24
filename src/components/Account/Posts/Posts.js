@@ -44,12 +44,7 @@ class Posts extends Component {
         //create a function that computes the actual time EST from element.createdAT
 
         return (
-          <Container>
-            <Row>
-           <CardColumns>
-  
-
-                <Card className="text-center">
+    <Card className="text-center">
     <Card.Body>
       <Card.Title>{element.username}</Card.Title>
       <Card.Text>
@@ -61,14 +56,17 @@ class Posts extends Component {
       </Card.Text>
     </Card.Body>
   </Card>
-   </CardColumns> 
-  </Row>
-
-        </Container>
-        )
+    )
       })
         return (
-<div className="p-5">{allUserPosts}</div>
+          
+<div className="p-5">
+<CardColumns>
+
+  {allUserPosts}
+  </CardColumns> 
+
+  </div>
         );
     }
 }
