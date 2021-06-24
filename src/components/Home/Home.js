@@ -3,8 +3,29 @@ import "./Home.css";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import Phone from '../../phone.png'
 import Logo from '../../Logo.png'
+import {Link} from 'react-router-dom'
 class Home extends Component {
-  render() {
+    render() {
+        let createBtn = {
+            backgroundColor: "white",
+            color: "black",
+            border:"none"
+    
+        }
+         let loginBtn = {
+           backgroundColor: "inherit",
+           color: "white",
+           border: "white 1px solid"
+         };
+        let linkTwo = {
+          textDecoration: "none",
+          color: "white",
+        };
+        
+         let link = {
+             textDecoration: "none",
+             color:"black"
+         };
       return (
         <div className="HomePage">
           <Container fluid>
@@ -23,8 +44,19 @@ class Home extends Component {
                     creating meaningful content for all users around the world
                   </h7>
                 </div>
-                <Button className="button1">Create Account</Button>
-                <Button>Login</Button>
+                <Button style={createBtn} className="button1">
+                  {" "}
+                  <Link style={link} to="/login">
+                    {" "}
+                    Create Account{" "}
+                  </Link>
+                </Button>
+                <Button style={loginBtn}>
+                  <Link style={linkTwo}  to="/login">
+                    {" "}
+                    Login{" "}
+                  </Link>
+                </Button>
               </Col>
 
               <Col xs={4} className="p-5">

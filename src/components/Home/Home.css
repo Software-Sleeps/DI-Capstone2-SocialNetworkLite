@@ -1,6 +1,6 @@
 .HomePage{
     background-color: #9A6A5C;
-    height: 1000px;
+  
 }
 .title{
     color: white; 
@@ -19,6 +19,6 @@
 }
 
 .button1{
-    margin-right:5%
-    flex:center;
+    margin-right:5%;
+    margin-left:30%;
 }
