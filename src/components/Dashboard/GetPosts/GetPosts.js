@@ -45,7 +45,7 @@ class GetPosts extends Component {
                 className="rounded mr-2"
                 alt=""
               />
-              <strong className="mr-auto">{this.state.username}</strong>
+              <strong className="mr-auto">{element.username}</strong>
               <small>just now</small>
             </Toast.Header>
             <Toast.Body class="m-5">

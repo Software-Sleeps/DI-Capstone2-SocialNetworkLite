@@ -221,6 +221,7 @@ class User extends Component {
               <Row>
                 <Form style={formStyle} onSubmit={this.handlePWUpdate}>
                 <FormControl 
+                type="password"
                 style={inputSize} 
                 placeholder="Change Password"
                 name={this.state.password}
