@@ -1,0 +1,24 @@
+.HomePage{
+    background-color: #9A6A5C;
+    height: 1000px;
+}
+.title{
+    color: white; 
+    font-family: Poppins 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+.col1{
+    padding-left:20%;
+    padding-top:15%;
+    padding-bottom:5%;
+}
+
+.head1{
+    padding-left:20%;
+    padding-bottom:5%;
+}
+
+.button1{
+    margin-right:5%
+    flex:center;
+}
