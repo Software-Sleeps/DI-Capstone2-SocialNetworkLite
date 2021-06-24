@@ -12,8 +12,8 @@ class Dashboard extends Component {
       text: "",
       //temp value until passed into props
       URL: "https://socialnetworklite.herokuapp.com",
-      username: JSON.parse(sessionStorage.getItem('username')),
-      displayName: JSON.parse(sessionStorage.getItem('displayName'))
+      username: JSON.parse(sessionStorage.getItem("username")),
+      displayName: JSON.parse(sessionStorage.getItem("displayName")),
     };
 
     this.handleMessageChange = this.handleMessageChange.bind(this);
@@ -45,7 +45,7 @@ class Dashboard extends Component {
         console.log("Post Request for Posts", data);
         console.log(userToken);
         //emptys out input box
-        this.setState({text: ""})
+        this.setState({ text: "" });
       })
       .catch((error) => console.log(error));
   }
@@ -63,21 +63,22 @@ class Dashboard extends Component {
       },
     });
 
-    fetch(`${this.state.URL}/users/${this.state.username}`,{
+    fetch(`${this.state.URL}/users/${this.state.username}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `bearer ${userToken}`
-      }
+        Authorization: `bearer ${userToken}`,
+      },
     })
-    .then(response => response.json())
-    .then(data => {
-      //both do the same thing
-      sessionStorage.setItem('displayName', JSON.stringify(data.user.displayName))
-        this.setState({displayName: data.user.displayName})
-    })
-
-
+      .then((response) => response.json())
+      .then((data) => {
+        //both do the same thing
+        sessionStorage.setItem(
+          "displayName",
+          JSON.stringify(data.user.displayName)
+        );
+        this.setState({ displayName: data.user.displayName });
+      });
   }
 
   render() {
@@ -86,9 +87,9 @@ class Dashboard extends Component {
       color: "white",
       width: "500px",
       height: "50px",
-      border: "1px white solid"
+      border: "1px white solid",
     };
-    
+
     let textAreaField = {
       height: "300px",
       width: "500px",
@@ -96,11 +97,11 @@ class Dashboard extends Component {
     };
 
     let colPadding = {
-        paddingTop: "7%"
-    }
-    let customizeFont= {
-        fontFamily: "Nunito, sans-serif"
-      }
+      paddingTop: "7%",
+    };
+    let customizeFont = {
+      fontFamily: "Nunito, sans-serif",
+    };
     return (
       <div>
         <Navigation />
@@ -114,11 +115,13 @@ class Dashboard extends Component {
         {/* CHECKING TOKEN */}
 
         <div>
-        <h1 className="text-center" style={customizeFont}> Welcome {this.state.displayName}</h1>
+          <h1 className="text-center" style={customizeFont}>
+            {" "}
+            Welcome {this.state.displayName}
+          </h1>
           <Container>
             <Row>
               <Col className="flex-direction-column" sm={8}>
-               
                 <form onSubmit={this.createPost}>
                   <Form.Label controlid={this.state.text}>
                     <h3>Create a Post</h3>
@@ -140,23 +143,18 @@ class Dashboard extends Component {
                 </form>
 
                 <Col>
-            <GetPosts />
-            </Col>
+                  <GetPosts />
+                </Col>
               </Col>
               <Col className={"overflow-auto text-center"} style={colPadding}>
-                  <h1> View Users </h1>
+                <h1> View Users </h1>
                 <ViewAllUsers />
               </Col>
-
             </Row>
-            
-            
           </Container>
         </div>
 
-        <div>
-          
-        </div>
+        <div></div>
       </div>
     );
   }
