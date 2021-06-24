@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardColumns, Container, Row } from 'react-bootstrap'
+import {Card, CardColumns } from 'react-bootstrap'
 
 
 class Posts extends Component {

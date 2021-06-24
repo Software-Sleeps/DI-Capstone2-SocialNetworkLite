@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Alert } from 'react-bootstrap'
+import { Modal, Button, Form } from 'react-bootstrap'
 class CreateUser extends Component {
 
     constructor(props){
