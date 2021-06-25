@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Card, Button, Image} from 'react-bootstrap'
+import {Card, Button, Image, Container} from 'react-bootstrap'
 import testAccount from '../../../icons8-test-account-96.png'
 
 // import { withRouter } from "react-router-dom";
@@ -16,7 +16,7 @@ class ViewAllUsers extends Component {
   // Automatic GET request
   componentDidMount() {
     let userToken = JSON.parse(sessionStorage.getItem("token"));
-    fetch(`${this.state.URL}/users?limit=4&offset=0`, {
+    fetch(`${this.state.URL}/users?limit=100&offset=0`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,6 +38,7 @@ class ViewAllUsers extends Component {
     const getAllUsers = this.state.allUsers.map((element, index) => {
       return (
         <div className="pt-4">
+         
         <Card className="text-center">
         <Card.Header key={`${element.username}-${index}`}>{element.username}</Card.Header>
         <Card.Body>
@@ -65,7 +66,33 @@ class ViewAllUsers extends Component {
       </div>
       );
     });
-    return <div>{getAllUsers}</div>;
+
+    let containerStyle = {
+      overflowY: "auto",
+      height: "1000px"
+    }
+
+    let fixedHeight = {
+      height: "200px"
+    }
+
+    let cardHeader = {
+      backgroundColor: "#9A6A5C",
+      color: "white",
+      fontFamily: "Nunito, sans-serif",
+    }
+    
+    return <div className="overflow-auto">
+      {/* <Container style={containerStyle} className="overflow-auto"> */}
+      <Card >
+  <Card.Header style={cardHeader}>View Users</Card.Header>
+  <Card.Body style={containerStyle}>{getAllUsers}</Card.Body>
+      
+      
+      </Card>
+
+      {/* </Container> */}
+      </div>;
   }
 }
 

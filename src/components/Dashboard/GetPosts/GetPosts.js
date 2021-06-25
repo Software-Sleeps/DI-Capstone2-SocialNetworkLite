@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Toast, Container, Row, Button } from "react-bootstrap";
+import { Toast, Container, Row, Button, Card, CardColumns } from "react-bootstrap";
 
 
 class GetPosts extends Component {
@@ -101,6 +101,12 @@ class GetPosts extends Component {
       });
   }
   render() {
+//header colors
+    let cardHeader = {
+      backgroundColor: "#9A6A5C",
+      color: "white",
+      fontFamily: "Nunito, sans-serif",
+    }
 
     //all cards
     const allPosts = this.state.posts.map((element, index) => {
@@ -147,35 +153,41 @@ class GetPosts extends Component {
           </Button>
         );
 
+
       return (
-        <div className="m-4" key={index} data-id={element.id}>
-          <Container>
-            <Row>
+        <div className="m-4 text-center" key={index} data-id={element.id} style={{display: "flex", justifyContent:"center"}}>
+         
               <Toast>
                 <Toast.Header>
-                  <img
-                    src="holder.js/20x20?text=%20"
-                    className="rounded mr-2"
-                    alt=""
-                  />
                   <strong className="mr-auto">{element.username}</strong>
-                  <small>just now</small>
+                  <small >{element.createdAt}</small>
                 </Toast.Header>
-                <Toast.Body class="m-5">
+                <Toast.Body className="m-5">
                   <p key={`${element.text}-${index}`}>{element.text}</p>
                 </Toast.Body>
 
                 {button}
               </Toast>
-            </Row>
-          </Container>
+     
         </div>
       );
     });
+
+    let fixedHeight={
+      height: "735px",
+      overflowY: "auto"
+    }
+
     return (
       <div>
-        <div className="m-5">{allPosts}</div>
+         <Card>
+           <Card.Header className="text-center" style={cardHeader}>What's Happening?</Card.Header>
+           <Card.Body style={fixedHeight}>
+        {allPosts}
+        </Card.Body>
+        </Card>
         {/* <h1>This is GET post</h1> */}
+  
       </div>
     );
   }

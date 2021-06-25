@@ -37,10 +37,6 @@ class Posts extends Component {
 
       let allUserPosts = this.state.userPosts.map((element, index) => {
 
-      let horizontalStack = {
-        display: 'flex', 
-        flexDirection: 'row'
-      }
         //create a function that computes the actual time EST from element.createdAT
 
         return (
