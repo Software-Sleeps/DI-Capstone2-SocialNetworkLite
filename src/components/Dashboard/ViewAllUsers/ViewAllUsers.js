@@ -16,7 +16,7 @@ class ViewAllUsers extends Component {
   // Automatic GET request
   componentDidMount() {
     let userToken = JSON.parse(sessionStorage.getItem("token"));
-    fetch(`${this.state.URL}/users?limit=10&offset=0`, {
+    fetch(`${this.state.URL}/users?limit=4&offset=0`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

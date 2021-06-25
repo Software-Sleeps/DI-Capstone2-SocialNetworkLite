@@ -101,7 +101,17 @@ class Dashboard extends Component {
     };
     let customizeFont = {
       fontFamily: "Nunito, sans-serif",
+      fontSize: "70px"
     };
+    let postAndUsersFont = {
+        fontFamily: "Nunito, sans-serif",
+        fontWeight: "bold",
+        fontSize: "40px"
+
+    }
+    let createPostPadding= {
+        paddingTop: "7%"
+    }
     return (
       <div>
         <Navigation />
@@ -121,10 +131,10 @@ class Dashboard extends Component {
           </h1>
           <Container>
             <Row>
-              <Col className="flex-direction-column" sm={8}>
+              <Col style={createPostPadding} className="flex-direction-column" sm={8}>
                 <form onSubmit={this.createPost}>
                   <Form.Label controlid={this.state.text}>
-                    <h3>Create a Post</h3>
+                    <h3 style={postAndUsersFont}>Create a Post</h3>
                   </Form.Label>
                   <Form.Control
                     as="textarea"
@@ -147,7 +157,7 @@ class Dashboard extends Component {
                 </Col>
               </Col>
               <Col className={"overflow-auto text-center"} style={colPadding}>
-                <h1> View Users </h1>
+                <h1 style={postAndUsersFont}> View Users </h1>
                 <ViewAllUsers />
               </Col>
             </Row>
