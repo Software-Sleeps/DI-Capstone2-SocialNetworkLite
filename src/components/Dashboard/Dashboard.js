@@ -89,15 +89,15 @@ class Dashboard extends Component {
       backgroundColor: "#9A6A5C",
       color: "white",
       fontFamily: "lato, serif",
-      fontSize: "20px"
+      fontSize: "20px",
     };
 
     let cardHeaders = {
       backgroundColor: "#9A6A5C",
       color: "white",
       fontFamily: "benne, serif",
-      fontSize: "22px"
-    }
+      fontSize: "22px",
+    };
 
     let textAreaField = {
       height: "100px",
@@ -108,17 +108,17 @@ class Dashboard extends Component {
       paddingTop: "7%",
     };
     let headingFont = {
-      fontFamily: 'Nunito, sans-serif',
-      fontSize: "35px"
+      fontFamily: "Nunito, sans-serif",
+      fontSize: "35px",
     };
 
-    let createPostPadding= {
-        paddingTop: "7%"
-    }
+    let createPostPadding = {
+      paddingTop: "7%",
+    };
 
-    let mauveBorder ={
-        border: "2px #9A6A5C solid "
-    }
+    let mauveBorder = {
+      border: "2px #9A6A5C solid ",
+    };
 
     return (
       <div>
@@ -131,31 +131,39 @@ class Dashboard extends Component {
           </h1>
           <Container>
             <Row>
-              <Col style={createPostPadding} className="flex-direction-column" sm={8}>
+              <Col
+                style={createPostPadding}
+                className="flex-direction-column"
+                sm={8}
+              >
                 <form onSubmit={this.createPost}>
-                <Card  className="text-center" style={mauveBorder}>
-                <Card.Header style={cardHeaders}>
-                  <Form.Label controlid={this.state.text}>
-                    
-                    Create a Post
-                  </Form.Label>
-                  </Card.Header>
-                  <Card.Body>
-                  <Form.Control
-                    size="lg"
-                    as="textarea"
-                    placeholder="Whats the tea?"
-                    style={textAreaField}
-                    onChange={this.handleMessageChange}
-                    name={this.state.text}
-                    value={this.state.text}
-                  />
-                  </Card.Body>
-                  <div className="p-2 text-center">
-                    <Button variant={"#9A6A5C"} style={mauve} value="submit" type="submit">
-                      Spill it
-                    </Button>
-                  </div>
+                  <Card className="text-center" style={mauveBorder}>
+                    <Card.Header style={cardHeaders}>
+                      <Form.Label controlid={this.state.text}>
+                        Create a Post
+                      </Form.Label>
+                    </Card.Header>
+                    <Card.Body>
+                      <Form.Control
+                        size="lg"
+                        as="textarea"
+                        placeholder="Whats the tea?"
+                        style={textAreaField}
+                        onChange={this.handleMessageChange}
+                        name={this.state.text}
+                        value={this.state.text}
+                      />
+                    </Card.Body>
+                    <div className="p-2 text-center">
+                      <Button
+                        variant={"#9A6A5C"}
+                        style={mauve}
+                        value="submit"
+                        type="submit"
+                      >
+                        Spill it
+                      </Button>
+                    </div>
                   </Card>
                 </form>
 
