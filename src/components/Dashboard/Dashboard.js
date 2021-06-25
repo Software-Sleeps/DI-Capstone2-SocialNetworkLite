@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GetPosts from "./GetPosts/GetPosts";
 import Navigation from "../Navigation/Navigation";
-import { Form, Button, Container, Row, Col } from "react-bootstrap/";
+import { Form, Button, Container, Row, Col, Card } from "react-bootstrap/";
 import ViewAllUsers from "./ViewAllUsers/ViewAllUsers";
 // import Login from "../Authentication/Login/Login";
 
@@ -83,49 +83,49 @@ class Dashboard extends Component {
 
   render() {
     let mauve = {
-      backgroundColor: "#9A6A5C",
-      color: "white",
-      width: "500px",
+      width: "50%",
       height: "50px",
       border: "1px white solid",
+      backgroundColor: "#9A6A5C",
+      color: "white",
+      fontFamily: "lato, serif",
+      fontSize: "20px"
     };
 
+    let cardHeaders = {
+      backgroundColor: "#9A6A5C",
+      color: "white",
+      fontFamily: "benne, serif",
+      fontSize: "22px"
+    }
+
     let textAreaField = {
-      height: "300px",
-      width: "500px",
-      border: "2px white solid",
+      height: "100px",
+      border: "2px #9A6A5C solid",
     };
 
     let colPadding = {
       paddingTop: "7%",
     };
-    let customizeFont = {
-      fontFamily: "Nunito, sans-serif",
-      fontSize: "70px"
+    let headingFont = {
+      fontFamily: 'Nunito, sans-serif',
+      fontSize: "35px"
     };
-    let postAndUsersFont = {
-        fontFamily: "Nunito, sans-serif",
-        fontWeight: "bold",
-        fontSize: "40px"
 
-    }
     let createPostPadding= {
         paddingTop: "7%"
     }
+
+    let mauveBorder ={
+        border: "2px #9A6A5C solid "
+    }
+
     return (
       <div>
         <Navigation />
 
-        {/* CHECKING TOKEN */}
-        {/* {sessionStorage.getItem("token") !== "" ? (
-          <h4>There is a token</h4>
-        ) : (
-          <h6>There is no token</h6>
-        )} */}
-        {/* CHECKING TOKEN */}
-
         <div>
-          <h1 className="text-center" style={customizeFont}>
+          <h1 className="text-center pt-4" style={headingFont}>
             {" "}
             Welcome {this.state.displayName}
           </h1>
@@ -133,10 +133,16 @@ class Dashboard extends Component {
             <Row>
               <Col style={createPostPadding} className="flex-direction-column" sm={8}>
                 <form onSubmit={this.createPost}>
+                <Card  className="text-center" style={mauveBorder}>
+                <Card.Header style={cardHeaders}>
                   <Form.Label controlid={this.state.text}>
-                    <h3 style={postAndUsersFont}>Create a Post</h3>
+                    
+                    Create a Post
                   </Form.Label>
+                  </Card.Header>
+                  <Card.Body>
                   <Form.Control
+                    size="lg"
                     as="textarea"
                     placeholder="Whats the tea?"
                     style={textAreaField}
@@ -144,20 +150,21 @@ class Dashboard extends Component {
                     name={this.state.text}
                     value={this.state.text}
                   />
-
-                  <div className="pt-4">
-                    <Button style={mauve} value="submit" type="submit">
+                  </Card.Body>
+                  <div className="p-2 text-center">
+                    <Button variant={"#9A6A5C"} style={mauve} value="submit" type="submit">
                       Spill it
                     </Button>
                   </div>
+                  </Card>
                 </form>
 
-                <Col>
+                <Col className="mt-5">
                   <GetPosts />
                 </Col>
               </Col>
               <Col className={"overflow-auto text-center"} style={colPadding}>
-                <h1 style={postAndUsersFont}> View Users </h1>
+                {/* <h1 style={postAndUsersFont}> View Users </h1> */}
                 <ViewAllUsers />
               </Col>
             </Row>

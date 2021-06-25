@@ -80,7 +80,14 @@ componentDidMount(){
   render() {
     let adjustButtons = {
         width: "30%",
-        height: "30%"
+        height: "30%",
+        backgroundColor: "#9A6A5C",
+        color: "white"
+    }
+
+    let mauveButton = {
+      backgroundColor: "#9A6A5C",
+      color: "white"
     }
 
     return (
@@ -91,15 +98,15 @@ componentDidMount(){
           <Col>
             <img src={testAccount} alt=""/>
             <h4>{this.state.displayName}</h4>
-            <p>{this.state.username}</p>
+           <em> <p>username: {this.state.username}</p></em> 
             </Col>
           {/* PIC & USERNAME */}
 
           {/* Update Pic & Delete User Buttons */}
           
           <Col>
-            <div className="p-4"><Button style={adjustButtons} onClick={this.handleModal}>Update Picture</Button></div>
-            <div className="p-4"><Button style={adjustButtons}>Delete User</Button></div>
+            <div className="p-4"><Button variant={mauveButton} style={adjustButtons} onClick={this.handleModal}>Update Picture</Button></div>
+            <div className="p-4"><Button variant={mauveButton} style={adjustButtons}>Delete User</Button></div>
           </Col>
 
           {/* Update Pic & Delete User Buttons */}
@@ -126,7 +133,7 @@ componentDidMount(){
         onChange={this.handlePicChange}/>
         </Form.Group>
 
-        <Button type="submit" value="submit">Upload Picture</Button>
+        <Button type="submit" value="submit" variant={mauveButton} style={mauveButton}>Upload Picture</Button>
           </Form>
 
         </Modal.Body>

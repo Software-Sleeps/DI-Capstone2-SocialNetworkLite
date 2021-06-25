@@ -112,6 +112,11 @@ class User extends Component {
   }
 
   render() {
+    let mauveButton = {
+      backgroundColor: "#9A6A5C",
+      color: "white"
+    }
+
     let inputSize = {
       width: "60%",
       marginLeft: "20%",
@@ -141,7 +146,7 @@ class User extends Component {
                 <h4>{this.state.displayName}</h4>
               </Col>
               <Col className="p-4">
-                <Button onClick={this.handleToggleDN}>
+                <Button onClick={this.handleToggleDN} variant={mauveButton} style={mauveButton}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -167,7 +172,7 @@ class User extends Component {
                   name={this.state.displayName}
                   value={this.state.displayName}
                   onChange={this.handleDNChange}/>
-                  <Button type="submit" value="submit">
+                  <Button type="submit" value="submit" style={mauveButton} variant={mauveButton}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -183,7 +188,7 @@ class User extends Component {
                 </Row>
               </Col>{" "}
               <Col className="p-4">
-                <Button onClick={this.handleToggleDN}>
+                <Button onClick={this.handleToggleDN} variant={mauveButton} style={mauveButton}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -212,12 +217,13 @@ class User extends Component {
               type="password"
               value="password"
               readonly
+              disabled
               />
               </Form>
 
             </Col>
             <Col className="p-4">
-              <Button onClick={this.handleTogglePW}>
+              <Button onClick={this.handleTogglePW} style={mauveButton} variant={mauveButton}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -244,7 +250,7 @@ class User extends Component {
                 name={this.state.password}
                 value={this.state.password}
                 onChange={this.handlePWChange}/>
-                <Button onClick={this.handlePWUpdate}>
+                <Button onClick={this.handlePWUpdate} style={mauveButton} variant={mauveButton}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -260,7 +266,7 @@ class User extends Component {
               </Row>
             </Col>{" "}
             <Col className="p-4">
-              <Button onClick={this.handleTogglePW}>
+              <Button onClick={this.handleTogglePW} variant={mauveButton} style={mauveButton}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

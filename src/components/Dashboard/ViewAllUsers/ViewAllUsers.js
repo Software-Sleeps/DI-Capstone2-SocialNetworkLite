@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Card, Button, Image} from 'react-bootstrap'
+import {Card, Button, Image, Container} from 'react-bootstrap'
 import testAccount from '../../../icons8-test-account-96.png'
 
 // import { withRouter } from "react-router-dom";
@@ -16,7 +16,7 @@ class ViewAllUsers extends Component {
   // Automatic GET request
   componentDidMount() {
     let userToken = JSON.parse(sessionStorage.getItem("token"));
-    fetch(`${this.state.URL}/users?limit=4&offset=0`, {
+    fetch(`${this.state.URL}/users?limit=100&offset=0`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -36,8 +36,15 @@ class ViewAllUsers extends Component {
     }
 
     const getAllUsers = this.state.allUsers.map((element, index) => {
+
+      //compute time 
+
+      let findCutoff = element.createdAt.indexOf("T");
+      let dateCreated = element.createdAt.slice(0, findCutoff);
+      
       return (
         <div className="pt-4">
+         
         <Card className="text-center">
         <Card.Header key={`${element.username}-${index}`}>{element.username}</Card.Header>
         <Card.Body>
@@ -60,12 +67,39 @@ class ViewAllUsers extends Component {
           </div>       
 
         </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
+        <Card.Footer className="text-muted">Member Since {dateCreated}</Card.Footer>
       </Card>
       </div>
       );
     });
-    return <div>{getAllUsers}</div>;
+
+    let containerStyle = {
+      overflowY: "auto",
+      height: "1059px"
+    }
+
+    let cardHeader = {
+      backgroundColor: "#9A6A5C",
+      color: "white",
+      fontFamily: "Benne, serif", 
+      fontSize: "22px"
+    }
+
+    let mauveBorder ={
+      border: "2px #9A6A5C solid "
+  }
+
+    return <div className="overflow-auto">
+      {/* <Container style={containerStyle} className="overflow-auto"> */}
+      <Card style={mauveBorder}>
+  <Card.Header style={cardHeader} className="benne">View Users</Card.Header>
+  <Card.Body style={containerStyle}>{getAllUsers}</Card.Body>
+      
+      
+      </Card>
+
+      {/* </Container> */}
+      </div>;
   }
 }
 
