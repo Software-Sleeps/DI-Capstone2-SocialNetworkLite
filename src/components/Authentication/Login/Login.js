@@ -97,6 +97,10 @@ class Login extends Component {
     }
 
     render() {
+
+        let alertColor ={
+            backgroundColor: "lightgray"
+        }
         return (
             <div className="text-center">
                 
@@ -111,9 +115,11 @@ class Login extends Component {
                             
                     <div>
                         <Row>
-                            <Col justify-content center>
+                            <Col></Col>
+                            <Col justify-content center xs={6}>
                         <Alert 
-                        variant="danger" 
+                        variant={alertColor} 
+                        style={alertColor}
                         show={this.state.showAlert} 
                         onClose={this.closeAlert} 
                         dismissible>
@@ -127,6 +133,8 @@ class Login extends Component {
                                 
         </Alert>
         </Col>
+        <Col></Col>
+
         </Row>
         </div>
         </Container>
