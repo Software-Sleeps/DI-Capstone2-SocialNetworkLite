@@ -8,8 +8,8 @@ This project incorporated programming languages: React, JavaScript, HTML, and CS
 
 ## Wireframes
 
-### Home Page - /home
-![Home Page - /home](/public/HomePage.png)
+### Home Page - /
+![Home Page - /](/public/HomePage.png)
 
 ### Login Page - /login
 
