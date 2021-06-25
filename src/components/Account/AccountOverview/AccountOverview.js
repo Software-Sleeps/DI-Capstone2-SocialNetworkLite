@@ -80,7 +80,14 @@ componentDidMount(){
   render() {
     let adjustButtons = {
         width: "30%",
-        height: "30%"
+        height: "30%",
+        backgroundColor: "#9A6A5C",
+        color: "white"
+    }
+
+    let mauveButton = {
+      backgroundColor: "#9A6A5C",
+      color: "white"
     }
 
     return (
@@ -98,8 +105,8 @@ componentDidMount(){
           {/* Update Pic & Delete User Buttons */}
           
           <Col>
-            <div className="p-4"><Button style={adjustButtons} onClick={this.handleModal}>Update Picture</Button></div>
-            <div className="p-4"><Button style={adjustButtons}>Delete User</Button></div>
+            <div className="p-4"><Button variant={mauveButton} style={adjustButtons} onClick={this.handleModal}>Update Picture</Button></div>
+            <div className="p-4"><Button variant={mauveButton} style={adjustButtons}>Delete User</Button></div>
           </Col>
 
           {/* Update Pic & Delete User Buttons */}
