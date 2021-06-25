@@ -87,14 +87,16 @@ class Dashboard extends Component {
       height: "50px",
       border: "1px white solid",
       backgroundColor: "#9A6A5C",
-      color: "white"
+      color: "white",
+      fontFamily: "lato, serif",
+      fontSize: "20px"
     };
 
     let cardHeaders = {
       backgroundColor: "#9A6A5C",
       color: "white",
       fontFamily: "benne, serif",
-      fontSize: "20px"
+      fontSize: "22px"
     }
 
     let textAreaField = {
@@ -107,7 +109,7 @@ class Dashboard extends Component {
     };
     let headingFont = {
       fontFamily: 'Nunito, sans-serif',
-
+      fontSize: "30px"
     };
 
     let createPostPadding= {

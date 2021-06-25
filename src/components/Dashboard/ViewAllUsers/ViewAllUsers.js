@@ -69,14 +69,14 @@ class ViewAllUsers extends Component {
 
     let containerStyle = {
       overflowY: "auto",
-      height: "1000px"
+      height: "1059px"
     }
 
     let cardHeader = {
       backgroundColor: "#9A6A5C",
       color: "white",
       fontFamily: "Benne, serif", 
-      fontSize: "20px"
+      fontSize: "22px"
     }
 
     let mauveBorder ={

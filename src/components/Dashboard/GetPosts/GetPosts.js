@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Toast, Container, Row, Button, Card, CardColumns } from "react-bootstrap";
+import { Toast, Button, Card } from "react-bootstrap";
 
 
 class GetPosts extends Component {
@@ -106,7 +106,7 @@ class GetPosts extends Component {
       backgroundColor: "#9A6A5C",
       color: "white",
       fontFamily: "benne, serif",
-      fontSize: "20px"
+      fontSize: "22px"
     }
 
     //all cards
