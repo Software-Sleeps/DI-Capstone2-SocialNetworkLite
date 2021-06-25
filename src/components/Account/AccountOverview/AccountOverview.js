@@ -98,7 +98,7 @@ componentDidMount(){
           <Col>
             <img src={testAccount} alt=""/>
             <h4>{this.state.displayName}</h4>
-            <p>{this.state.username}</p>
+           <em> <p>username: {this.state.username}</p></em> 
             </Col>
           {/* PIC & USERNAME */}
 
@@ -133,7 +133,7 @@ componentDidMount(){
         onChange={this.handlePicChange}/>
         </Form.Group>
 
-        <Button type="submit" value="submit">Upload Picture</Button>
+        <Button type="submit" value="submit" variant={mauveButton} style={mauveButton}>Upload Picture</Button>
           </Form>
 
         </Modal.Body>

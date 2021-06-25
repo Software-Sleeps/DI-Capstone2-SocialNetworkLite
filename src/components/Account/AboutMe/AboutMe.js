@@ -70,6 +70,11 @@ class AboutMe extends Component {
       marginLeft: "20%",
     };
 
+    let mauveButton = {
+      backgroundColor: "#9A6A5C",
+      color: "white"
+    };
+
     return (
       <div>
         <Container fluid>
@@ -86,7 +91,7 @@ class AboutMe extends Component {
                 <Col className="row-padding">
                   <h4>{this.state.aboutMe}</h4>
                 </Col>
-                <Button onClick={this.handleToggleAM}>
+                <Button onClick={this.handleToggleAM} variant={mauveButton} style={mauveButton}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -118,7 +123,7 @@ class AboutMe extends Component {
                       value={this.state.aboutMe}
                       rows={5}
                     />
-                    <Button type="submit" value="submit" onClick={this.handleAMUpdate}>
+                    <Button type="submit" value="submit" onClick={this.handleAMUpdate} variant={mauveButton} style={mauveButton}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -134,7 +139,7 @@ class AboutMe extends Component {
 
                     </Form>
                     <Col className="p-5">
-                      <Button onClick={this.handleToggleAM}>
+                      <Button onClick={this.handleToggleAM} variant={mauveButton} style={mauveButton}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"

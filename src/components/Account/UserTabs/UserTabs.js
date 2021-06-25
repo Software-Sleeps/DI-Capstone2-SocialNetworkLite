@@ -9,6 +9,10 @@ class UserTabs extends Component {
 
 
     render() {
+        let tabColor = {
+            color: "#9A6A5C"
+          };
+        
         return (
             <div>
             <Container fluid>
@@ -17,7 +21,7 @@ class UserTabs extends Component {
 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
 
 
-  <Tab eventKey="user" title="User" >
+  <Tab eventKey="user" title="User">
      <User/>
   </Tab>
 
