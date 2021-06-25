@@ -3,7 +3,7 @@ import CreateUser from '../CreateUser/CreateUser';
 
 import './Login.css'
 import { withRouter } from 'react-router'
-import {Form, Button} from 'react-bootstrap'
+import {Form, Button, Container, Col, Row} from 'react-bootstrap'
 import Alert from 'react-bootstrap/Alert'
 
 class Login extends Component {
@@ -97,6 +97,10 @@ class Login extends Component {
     }
 
     render() {
+
+        let alertColor ={
+            backgroundColor: "lightgray"
+        }
         return (
             <div className="text-center">
                 
@@ -105,19 +109,37 @@ class Login extends Component {
                     <h2>Login</h2>
                     <p>Sign in to continue</p>
                         </div>
-                    <div className="w-25">
+
+
+                        <Container>
+                            
+                    <div>
+                        <Row>
+                            <Col></Col>
+                            <Col justify-content center xs={6}>
                         <Alert 
-                        className="d-flex justify-content-center"
-                        variant="danger" 
+                        variant={alertColor} 
+                        style={alertColor}
                         show={this.state.showAlert} 
                         onClose={this.closeAlert} 
                         dismissible>
-          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-          <p>
-            Error Logging in! Please Try Again!
-          </p>
+          <Alert.Heading>This User Does Not Exist</Alert.Heading>
+          <br></br>
+                            <hr />
+                            <p>
+           Please try to login with different credentials.
+                                </p>
+                                
+                                
         </Alert>
+        </Col>
+        <Col></Col>
+
+        </Row>
         </div>
+        </Container>
+
+
                 <form onSubmit={this.handleLogin} className="p-5">
 
                 <Form.Group controlId="formBasicEmail" className="p-inline pb-3">

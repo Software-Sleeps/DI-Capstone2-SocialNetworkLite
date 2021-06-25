@@ -104,7 +104,7 @@ class CreateUser extends Component {
         backdrop="static"
         keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title className="text-center">Modal heading</Modal.Title>
+          <Modal.Title className="text-center">Create Account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             
@@ -119,6 +119,9 @@ class CreateUser extends Component {
                         name={this.state.createUN}
                         value={this.state.createUN}
                         placeholder="Jsmith202"
+                        minLength="3"
+                        maxLength="20"
+                        required
                         />
                 
         </Form.Group>
@@ -133,6 +136,9 @@ class CreateUser extends Component {
                         name={this.state.displayName}
                         value={this.state.displayName}
                         placeholder="Jane Smith"
+                        minLength="3"
+                        maxLength="20"
+                        required
                         />
 
                     </Form.Group>
@@ -149,6 +155,9 @@ class CreateUser extends Component {
                         name={this.state.createPW}
                         value={this.state.createPW}
                         placeholder="Choose a Password"
+                        minLength="3"
+                        maxLength="20"
+                        required
                         />
 
 
