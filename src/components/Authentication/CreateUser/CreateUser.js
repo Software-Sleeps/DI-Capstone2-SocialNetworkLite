@@ -123,6 +123,9 @@ class CreateUser extends Component {
                         maxLength="20"
                         required
                         />
+                        <Form.Text className="text-muted">
+                       Username cannot be changed once set.
+                        </Form.Text>
                 
         </Form.Group>
 
