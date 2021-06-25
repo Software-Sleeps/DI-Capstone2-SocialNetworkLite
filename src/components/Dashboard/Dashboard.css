@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Benne&family=Lato:ital,wght@1,100&family=Lobster+Two&family=Niconne&family=Nunito+Sans:ital,wght@1,200&family=Nunito:ital,wght@1,200&display=swap');
+.benne{
+    font-family: 'Benne', serif;
+}
+
+.niconne{
+    font-family: 'Niconne', cursive;
+}
+
+.lobster{
+    font-family: 'Lobster', cursive;
+
+}
+
+.lato{
+    font-family: 'Lato', sans-serif;
+}
+
+.nunito{
+    font-family: 'Nunito Sans', sans-serif;
+}

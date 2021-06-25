@@ -93,7 +93,8 @@ class Dashboard extends Component {
     let cardHeaders = {
       backgroundColor: "#9A6A5C",
       color: "white",
-      fontFamily: "Nunito, sans-serif",
+      fontFamily: "benne, serif",
+      fontSize: "20px"
     }
 
     let textAreaField = {
@@ -104,20 +105,25 @@ class Dashboard extends Component {
     let colPadding = {
       paddingTop: "7%",
     };
-    let customizeFont = {
-      fontFamily: "Nunito, sans-serif",
+    let headingFont = {
+      fontFamily: 'Nunito, sans-serif',
+
     };
 
     let createPostPadding= {
         paddingTop: "7%"
     }
-    
+
+    let mauveBorder ={
+        border: "2px #9A6A5C solid "
+    }
+
     return (
       <div>
         <Navigation />
 
         <div>
-          <h1 className="text-center" style={customizeFont}>
+          <h1 className="text-center pt-4" style={headingFont}>
             {" "}
             Welcome {this.state.displayName}
           </h1>
@@ -125,7 +131,7 @@ class Dashboard extends Component {
             <Row>
               <Col style={createPostPadding} className="flex-direction-column" sm={8}>
                 <form onSubmit={this.createPost}>
-                <Card  className="text-center">
+                <Card  className="text-center" style={mauveBorder}>
                 <Card.Header style={cardHeaders}>
                   <Form.Label controlid={this.state.text}>
                     

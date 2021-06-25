@@ -105,7 +105,8 @@ class GetPosts extends Component {
     let cardHeader = {
       backgroundColor: "#9A6A5C",
       color: "white",
-      fontFamily: "Nunito, sans-serif",
+      fontFamily: "benne, serif",
+      fontSize: "20px"
     }
 
     //all cards
@@ -178,9 +179,12 @@ class GetPosts extends Component {
       overflowY: "auto"
     }
 
+    let mauveBorder ={
+      border: "2px #9A6A5C solid "
+  }
     return (
       <div>
-         <Card>
+         <Card style={mauveBorder}>
            <Card.Header className="text-center" style={cardHeader}>What's Happening?</Card.Header>
            <Card.Body style={fixedHeight}>
         {allPosts}

@@ -72,20 +72,21 @@ class ViewAllUsers extends Component {
       height: "1000px"
     }
 
-    let fixedHeight = {
-      height: "200px"
-    }
-
     let cardHeader = {
       backgroundColor: "#9A6A5C",
       color: "white",
-      fontFamily: "Nunito, sans-serif",
+      fontFamily: "Benne, serif", 
+      fontSize: "20px"
     }
-    
+
+    let mauveBorder ={
+      border: "2px #9A6A5C solid "
+  }
+
     return <div className="overflow-auto">
       {/* <Container style={containerStyle} className="overflow-auto"> */}
-      <Card >
-  <Card.Header style={cardHeader}>View Users</Card.Header>
+      <Card style={mauveBorder}>
+  <Card.Header style={cardHeader} className="benne">View Users</Card.Header>
   <Card.Body style={containerStyle}>{getAllUsers}</Card.Body>
       
       
