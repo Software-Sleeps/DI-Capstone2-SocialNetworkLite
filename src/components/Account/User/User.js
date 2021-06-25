@@ -217,6 +217,7 @@ class User extends Component {
               type="password"
               value="password"
               readonly
+              disabled
               />
               </Form>
 
