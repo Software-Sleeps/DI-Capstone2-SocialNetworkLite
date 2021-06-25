@@ -8,6 +8,17 @@ function Logout(props) {
 
     const userToken = JSON.parse(sessionStorage.getItem('token'))
 
+    const logoutButton = {
+        backgroundColor: "inherit",
+        color: "white",
+        border: "white 1px solid",
+        //trying to add a CSS hover attribute
+        "&:hover": {
+            backgroundColor: 'black',
+            color: "black"
+        }
+    }
+
     const handleLogout = () =>{
         
         fetch(`${URL}/auth/logout`,{
@@ -30,7 +41,7 @@ function Logout(props) {
     }
         return (
             <div>
-                <Button onClick={handleLogout} variant="link">Logout</Button>
+                <Button onClick={handleLogout} style={logoutButton}>Logout</Button>
                 
             </div>
         );

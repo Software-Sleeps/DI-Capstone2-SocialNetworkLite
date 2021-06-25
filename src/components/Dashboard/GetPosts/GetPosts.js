@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Toast, Container, Row, Button } from "react-bootstrap";
-//import RedHeart from '../../../icons8-redheart-48.png'
-// import BlankHeart from '../../icons8-blankheart-48.png'
+
 
 class GetPosts extends Component {
   constructor(props) {
@@ -95,36 +94,13 @@ class GetPosts extends Component {
       .then((response) => response.json())
       .then((data) => {
         console.log("posts", data);
+
         this.setState({
           posts: data.posts,
         });
-
-        console.log(
-          "checking username",
-          JSON.parse(sessionStorage.getItem("username"))
-        );
       });
   }
   render() {
-    //id used to find ID of likes
-    //will use in button onClick
-    // const likeID = this.state.posts.map((element) =>{
-    //   let id;
-    //   element.likes.forEach(nestedElement => {
-    //     if(nestedElement.username === this.state.username){
-    //   id = nestedElement.id
-    // }
-    //   })
-    //   return id
-    // })
-
-    //a boolean to check if user has liked or not
-    // const userLikes = this.state.posts.map((element) =>{
-
-    //  let un = element.likes.find(element => element.username === this.state.username)
-
-    //  if (un){ return true} else {return false}
-    // })
 
     //all cards
     const allPosts = this.state.posts.map((element, index) => {
