@@ -53,3 +53,8 @@ Documentation can be found at [https://socialnetworklite.herokuapp.com/docs/#/](
 * React
 * React-Bootstrap
 * CSS
+
+## Acknowledgements
+
+Our instructor lead/support during this capstone week was Hou Chia--experienced in modern JS and React components. Some HTML/CSS components incoporated in this project were taught by Dana Wyatt.
+
