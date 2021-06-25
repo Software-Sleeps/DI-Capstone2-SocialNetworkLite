@@ -13,15 +13,14 @@ function Navigation(props){
         textDecoration: "none"
     }
 
-    const searchButton = {
-        backgroundColor: "inherit",
-        color: "white",
-        border: "white 1px solid",
-        //trying to add a CSS hover attribute
-        "&:hover": {
-            backgroundColor: 'black',
-            color: "black"
-        }
+    const accountButton = {
+        backgroundColor: "white",
+        color: "black",
+        border: "#9A6A5C 1px solid", 
+    }
+
+    const accountLink = {
+        color: "#9A6A5C"
     }
         return (
             <div>
@@ -32,27 +31,15 @@ function Navigation(props){
       <Nav.Link><Link to="/" style={styleLink}>Home</Link></Nav.Link>
       <Nav.Link><Link to="/dashboard" style={styleLink}>Dashboard</Link></Nav.Link>
       
-        {/* DROPDOWN */}
-      <NavDropdown title="View" id="navbarScrollingDropdown">
-        <NavDropdown.Item><Link to="/account">View Account</Link></NavDropdown.Item>
-        <NavDropdown.Divider />
-
-        <NavDropdown.Item>
-            
-            {/* add logout component here */}
-            {/* Logout */}
-            <Logout/>
-            
-        </NavDropdown.Item>
-
-      </NavDropdown>
-
-        {/* DROPDOWN */}
-
     </Nav>
+
     <Form inline>
-      <FormControl type="text" placeholder="Search Users" className="mr-sm-2" />
-      <Button variant="outline-info" style={searchButton}>Search</Button>
+    <Button variant="outline-info" style={accountButton}>
+    <Link to="/account" style={accountLink}>My Account</Link>
+      </Button>
+
+          <div className="pl-3"></div>
+          <Logout/>
     </Form>
   </Navbar>
 
