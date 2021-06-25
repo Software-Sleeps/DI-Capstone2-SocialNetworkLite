@@ -37,8 +37,12 @@ class Posts extends Component {
 
       let allUserPosts = this.state.userPosts.map((element, index) => {
 
+          //compute the date 
+          let date = new Date(element.createdAt)
         //create a function that computes the actual time EST from element.createdAT
 
+        let findCutoff = element.createdAt.indexOf("T")
+        let dateCreated = element.createdAt.slice(0, findCutoff)
         return (
     <Card className="text-center">
     <Card.Body>
@@ -48,7 +52,7 @@ class Posts extends Component {
       </Card.Text>
       <Card.Text>
 
-        <small className="text-muted">Last updated at {element.createdAt}</small>
+        <small className="text-muted">Posted on {dateCreated}</small>
       </Card.Text>
     </Card.Body>
   </Card>

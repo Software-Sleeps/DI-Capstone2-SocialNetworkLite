@@ -36,6 +36,12 @@ class ViewAllUsers extends Component {
     }
 
     const getAllUsers = this.state.allUsers.map((element, index) => {
+
+      //compute time 
+
+      let findCutoff = element.createdAt.indexOf("T");
+      let dateCreated = element.createdAt.slice(0, findCutoff);
+      
       return (
         <div className="pt-4">
          
@@ -61,7 +67,7 @@ class ViewAllUsers extends Component {
           </div>       
 
         </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
+        <Card.Footer className="text-muted">Member Since {dateCreated}</Card.Footer>
       </Card>
       </div>
       );

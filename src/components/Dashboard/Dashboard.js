@@ -109,7 +109,7 @@ class Dashboard extends Component {
     };
     let headingFont = {
       fontFamily: 'Nunito, sans-serif',
-      fontSize: "30px"
+      fontSize: "35px"
     };
 
     let createPostPadding= {
