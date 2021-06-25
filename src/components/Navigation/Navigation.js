@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import React from 'react';
 import Logout from "../Authentication/Logout/Logout";
-import { Navbar, Nav, Form, Button, FormControl, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Form, Button} from "react-bootstrap";
 import './Navigation.css'
 
 function Navigation(props){

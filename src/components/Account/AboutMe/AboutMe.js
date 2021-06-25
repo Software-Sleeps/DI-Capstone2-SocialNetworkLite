@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button, FormControl, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  FormControl,
+  Form,
+} from "react-bootstrap";
 
 class AboutMe extends Component {
   constructor(props) {
@@ -7,8 +14,8 @@ class AboutMe extends Component {
     this.state = {
       toggleAM: false,
       URL: "https://socialnetworklite.herokuapp.com",
-      username: JSON.parse(sessionStorage.getItem('username')),
-      aboutMe: ''
+      username: JSON.parse(sessionStorage.getItem("username")),
+      aboutMe: "",
     };
     this.handleToggleAM = this.handleToggleAM.bind(this);
     this.handleAMChange = this.handleAMChange.bind(this);
@@ -21,47 +28,46 @@ class AboutMe extends Component {
       : this.setState({ toggleAM: true });
   }
 
-  handleAMChange(event){
-    this.setState({aboutMe: event.target.value})
+  handleAMChange(event) {
+    this.setState({ aboutMe: event.target.value });
   }
 
-  handleAMUpdate(event){
-    event.preventDefault()
-    let userToken = JSON.parse(sessionStorage.getItem('token'))
+  handleAMUpdate(event) {
+    event.preventDefault();
+    let userToken = JSON.parse(sessionStorage.getItem("token"));
 
-    fetch(`${this.state.URL}/users/${this.state.username}`,{
+    fetch(`${this.state.URL}/users/${this.state.username}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "authorization": `bearer ${userToken}`
+        authorization: `bearer ${userToken}`,
       },
-      body: JSON.stringify({about: this.state.aboutMe})})
-      .then(response => response.json())
-      .then(data =>{
-        console.log('update about me', data)
-        this.setState({aboutMe: data.user.about})
-      })
+      body: JSON.stringify({ about: this.state.aboutMe }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ aboutMe: data.user.about });
+      });
 
-      this.handleToggleAM()
+    this.handleToggleAM();
   }
 
-  componentDidMount(){
-    let userToken = JSON.parse(sessionStorage.getItem('token'))
-    
-    fetch(`${this.state.URL}/users/${this.state.username}`,{
+  componentDidMount() {
+    let userToken = JSON.parse(sessionStorage.getItem("token"));
+
+    fetch(`${this.state.URL}/users/${this.state.username}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `bearer ${userToken}`
-      }})
-      .then(response => response.json())
-      .then(data => {
-  
+        Authorization: `bearer ${userToken}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
         this.setState({
           aboutMe: data.user.about,
-        })
-
-      })
+        });
+      });
   }
 
   render() {
@@ -72,18 +78,21 @@ class AboutMe extends Component {
 
     let mauveButton = {
       backgroundColor: "#9A6A5C",
-      color: "white"
+      color: "white",
     };
 
     return (
       <div>
         <Container fluid>
-          {this.state.aboutMe === ""? (
-          <div className="text-center pt-5">
-            <h4>What do you want others to know about you?</h4>
-                <p>Add an About Me!</p>
-            </div>) : ("")}
-            
+          {this.state.aboutMe === "" ? (
+            <div className="text-center pt-5">
+              <h4>What do you want others to know about you?</h4>
+              <p>Add an About Me!</p>
+            </div>
+          ) : (
+            ""
+          )}
+
           {!this.state.toggleAM ? (
             <Row className={"text-center row-padding"}>
               {" "}
@@ -91,7 +100,11 @@ class AboutMe extends Component {
                 <Col className="row-padding">
                   <h4>{this.state.aboutMe}</h4>
                 </Col>
-                <Button onClick={this.handleToggleAM} variant={mauveButton} style={mauveButton}>
+                <Button
+                  onClick={this.handleToggleAM}
+                  variant={mauveButton}
+                  style={mauveButton}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -112,34 +125,42 @@ class AboutMe extends Component {
                 <Row>
                   <Col className="text-center p-5">
                     <Form onSubmit={this.handleAMUpdate}>
-
-                    <FormControl
-                      size="lg"
-                      style={inputSize}
-                      onChange={this.handleAMChange}
-                      placeholder="Change About Me"
-                      as="textarea"
-                      name={this.state.aboutMe}
-                      value={this.state.aboutMe}
-                      rows={5}
-                    />
-                    <Button type="submit" value="submit" onClick={this.handleAMUpdate} variant={mauveButton} style={mauveButton}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-upload"
-                        viewBox="0 0 16 16"
+                      <FormControl
+                        size="lg"
+                        style={inputSize}
+                        onChange={this.handleAMChange}
+                        placeholder="Change About Me"
+                        as="textarea"
+                        name={this.state.aboutMe}
+                        value={this.state.aboutMe}
+                        rows={5}
+                      />
+                      <Button
+                        type="submit"
+                        value="submit"
+                        onClick={this.handleAMUpdate}
+                        variant={mauveButton}
+                        style={mauveButton}
                       >
-                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
-                      </svg>
-                    </Button>
-
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-upload"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                          <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                        </svg>
+                      </Button>
                     </Form>
                     <Col className="p-5">
-                      <Button onClick={this.handleToggleAM} variant={mauveButton} style={mauveButton}>
+                      <Button
+                        onClick={this.handleToggleAM}
+                        variant={mauveButton}
+                        style={mauveButton}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"

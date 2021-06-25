@@ -21,24 +21,10 @@ class GetPosts extends Component {
     this.setState({ likeID: event.target.value });
   }
 
-  computeTime = (userDate, currentDate) => {
-    //get a timestamp of current date
-    let date = new Date();
-    let currentTime =
-      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    let today =
-      date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-
-    currentDate = `${today} ${currentTime}`;
-
-    console.log(currentDate);
-  };
-
   //like a post
   addLike = (id) => {
     //let userToken = JSON.parse(sessionStorage.getItem("token"));
 
-    console.log("this is addLiked button");
     this.setState((currentState) => {
       return { likedPosts: [...currentState.likedPosts, Number(id)] };
     });
@@ -59,8 +45,6 @@ class GetPosts extends Component {
   };
 
   removeLike(id) {
-    console.log("this is remove like button");
-
     this.setState((currentState) => {
       if (currentState.likedPosts.length > 0) {
         const index = currentState.likedPosts.indexOf(id);
@@ -105,8 +89,6 @@ class GetPosts extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("posts", data);
-
         this.setState({
           posts: data.posts,
         });
@@ -125,7 +107,6 @@ class GetPosts extends Component {
     const allPosts = this.state.posts.map((element, index) => {
       //if the posts than show a certain button
       //if post is not liked show a different button
-      console.log("this is element by id", element.id);
 
       let button =
         this.state.likedPosts.indexOf(element.id) >= 0 ? (
