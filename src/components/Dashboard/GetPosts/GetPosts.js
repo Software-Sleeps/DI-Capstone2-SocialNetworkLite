@@ -71,14 +71,7 @@ class GetPosts extends Component {
     //   .catch((error) => console.log(error));
   }
 
-  componentDidMount() {
-    // this.state.posts.forEach((element) =>{
-    //     element.likes.forEach(nestedElement => {
-    //      this.state.likedPosts.push(nestedElement)
-    //     })
-    //   })
-    // console.log('these are the liked posts', this.state.likedPosts)
-    const userToken = JSON.parse(sessionStorage.getItem("token"));
+  getPosts = (userToken = JSON.parse(sessionStorage.getItem("token"))) =>{
 
     fetch("https://socialnetworklite.herokuapp.com/posts?limit=5", {
       method: "GET",
@@ -87,13 +80,46 @@ class GetPosts extends Component {
         Authorization: `bearer ${userToken}`,
       },
     })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          posts: data.posts,
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            posts: data.posts,
+          });
         });
-      });
   }
+
+  componentDidMount() {
+    // this.state.posts.forEach((element) =>{
+    //     element.likes.forEach(nestedElement => {
+    //      this.state.likedPosts.push(nestedElement)
+    //     })
+    //   })
+    // // console.log('these are the liked posts', this.state.likedPosts)
+    // const userToken = JSON.parse(sessionStorage.getItem("token"));
+    //
+    // fetch("https://socialnetworklite.herokuapp.com/posts?limit=5", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `bearer ${userToken}`,
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     this.setState({
+    //       posts: data.posts,
+    //     });
+    //   });
+    this.getPosts()
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('prev state', prevState)
+
+    if (prevState.posts === this.state.posts.length - 1 ){
+      this.getPosts()
+      }
+    }
   render() {
     //header colors
     let cardHeader = {
