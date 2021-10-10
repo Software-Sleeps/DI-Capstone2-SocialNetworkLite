@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import GetPosts from "./GetPosts/GetPosts";
+import AlternateGetPosts from "./GetPosts/AlternateGetPosts";
 import Navigation from "../Navigation/Navigation";
-import { Form, Button, Container, Row, Col, Card } from "react-bootstrap/";
+import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import ViewAllUsers from "./ViewAllUsers/ViewAllUsers";
 // import Login from "../Authentication/Login/Login";
 
@@ -164,7 +165,7 @@ class Dashboard extends Component {
                 </form>
 
                 <Col className="mt-5">
-                  <GetPosts />
+                  <AlternateGetPosts/>
                 </Col>
               </Col>
               <Col className={"overflow-auto text-center"} style={colPadding}>

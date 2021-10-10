@@ -13,9 +13,6 @@ class GetPosts extends Component {
       likedPosts: [],
       liked: true,
     };
-
-    // this.addLike = this.addLike.bind(this);
-    this.removeLike = this.removeLike.bind(this);
   }
   handleLikeChange(event) {
     this.setState({ likeID: event.target.value });
@@ -44,7 +41,7 @@ class GetPosts extends Component {
     // .catch((error) => console.log(error));
   };
 
-  removeLike(id) {
+  removeLike = (id) => {
     this.setState((currentState) => {
       if (currentState.likedPosts.length > 0) {
         const index = currentState.likedPosts.indexOf(id);
@@ -116,10 +113,11 @@ class GetPosts extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('prev state', prevState)
 
-    if (prevState.posts === this.state.posts.length - 1 ){
+    if (prevState.posts.length !== this.state.posts.length){
       this.getPosts()
       }
     }
+
   render() {
     //header colors
     let cardHeader = {
