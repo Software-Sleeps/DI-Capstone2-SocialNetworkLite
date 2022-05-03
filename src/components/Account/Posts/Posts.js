@@ -1,39 +1,30 @@
-import React, { Component } from "react";
+import React, {Component, useEffect, useState} from "react";
 import { Card, CardColumns } from "react-bootstrap";
 
-class Posts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: JSON.parse(sessionStorage.getItem("username")),
-      userPosts: [],
-      URL: "https://socialnetworklite.herokuapp.com",
-    };
-  }
+const Posts = () => {
+ const username = sessionStorage.getItem("username");
+ const [userPosts, setUserPosts] = useState([]);
+ const URL = "https://socialnetworklite.herokuapp.com";
 
-  componentDidMount() {
+      useEffect(() => {
     let userToken = JSON.parse(sessionStorage.getItem("token"));
 
-    fetch(`${this.state.URL}/posts?username=${this.state.username}`, {
+    fetch(`${URL}/posts?username=${username}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `bearer ${userToken}`,
       },
     })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          userPosts: data.posts,
+        .then((response) => response.json())
+        .then((data) => {
+          setUserPosts(data.posts);
         });
-      });
-  }
-
-  render() {
-    let allUserPosts = this.state.userPosts.map((element, index) => {
-      let findCutoff = element.createdAt.indexOf("T");
-      let dateCreated = element.createdAt.slice(0, findCutoff);
-      return (
+  }, []);
+  let allUserPosts = userPosts.map((element, index) => {
+    let findCutoff = element.createdAt.indexOf("T");
+    let dateCreated = element.createdAt.slice(0, findCutoff);
+    return (
         <Card className="text-center">
           <Card.Body>
             <Card.Title>{element.username}</Card.Title>
@@ -43,14 +34,12 @@ class Posts extends Component {
             </Card.Text>
           </Card.Body>
         </Card>
-      );
-    });
-    return (
+    );
+  });
+  return(
       <div className="p-5">
         <CardColumns>{allUserPosts}</CardColumns>
       </div>
-    );
-  }
+  )
 }
-
 export default Posts;

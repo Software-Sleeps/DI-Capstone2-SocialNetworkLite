@@ -74,6 +74,7 @@ class CreateUser extends Component {
           displayName: "",
           createPW: "",
         });
+        this.handleClose()
       });
   }
 
