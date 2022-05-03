@@ -1,25 +1,13 @@
 import React, {Component, useEffect, useState} from "react";
 import { Card, CardColumns } from "react-bootstrap";
+import { fetchPosts } from "../../../api/posts";
 
 const Posts = () => {
  const username = sessionStorage.getItem("username");
  const [userPosts, setUserPosts] = useState([]);
- const URL = "https://socialnetworklite.herokuapp.com";
 
       useEffect(() => {
-    let userToken = JSON.parse(sessionStorage.getItem("token"));
-
-    fetch(`${URL}/posts?username=${username}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
-      },
-    })
-        .then((response) => response.json())
-        .then((data) => {
-          setUserPosts(data.posts);
-        });
+          setUserPosts(fetchPosts(username));
   }, []);
   let allUserPosts = userPosts.map((element, index) => {
     let findCutoff = element.createdAt.indexOf("T");

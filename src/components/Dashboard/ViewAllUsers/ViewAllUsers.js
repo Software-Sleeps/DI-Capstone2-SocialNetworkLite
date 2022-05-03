@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Button, Image } from "react-bootstrap";
-import testAccount from "../../../icons8-test-account-96.png";
+import testAccount from "../../../img/icons8-test-account-96.png";
 
 // import { withRouter } from "react-router-dom";
 

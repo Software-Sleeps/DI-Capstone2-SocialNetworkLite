@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./AccountOverview.css";
-import testAccount from "../../../icons8-test-account-96.png";
+import testAccount from "../../../img/icons8-test-account-96.png";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 class AccountOverview extends Component {
   constructor(props) {
